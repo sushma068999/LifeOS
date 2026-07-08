@@ -1,0 +1,62 @@
+/* =======================================================
+   LifeOS Design Tokens — Colors
+   ======================================================= */
+
+:root{
+
+  /* Backgrounds */
+
+  --bg-main:#F7F8F5;
+  --bg-surface:#FFFFFF;
+  --bg-sidebar:#EEF3F0;
+  --bg-hover:#E6ECE8;
+
+  /* Primary (Sage) */
+
+  --primary:#6E9B8A;
+  --primary-dark:#567B6D;
+  --primary-light:#AFCFC1;
+
+  /* Accent (Soft Blue) */
+
+  --accent:#7FAFD4;
+  --accent-dark:#5F95C1;
+  --accent-light:#D8E9F5;
+
+  /* Text */
+
+  --text-primary:#1F2933;
+  --text-secondary:#55606D;
+  --text-muted:#7D8793;
+  --text-white:#FFFFFF;
+
+  /* Borders */
+
+  --border:#D8E2DC;
+  --border-light:#E9EFEC;
+
+  /* Status */
+
+  --success:#69B578;
+  --warning:#E8B04D;
+  --danger:#D96C6C;
+  --info:#7FAFD4;
+
+  /* Analytics */
+
+  --chart-sage:#7DAE99;
+  --chart-green:#A8D5BA;
+
+  --chart-blue:#8BBCE5;
+  --chart-blue-light:#CFE5F7;
+
+  --chart-gold:#D8B26E;
+  --chart-coral:#E99A7A;
+
+  /* Shadows */
+
+  --shadow-sm:0 2px 8px rgba(31,41,51,.05);
+  --shadow-md:0 8px 24px rgba(31,41,51,.08);
+  --shadow-lg:0 20px 45px rgba(31,41,51,.12);
+
+}

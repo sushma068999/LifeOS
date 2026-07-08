@@ -1,0 +1,102 @@
+/* =====================================================
+   LifeOS Typography
+   ===================================================== */
+
+/* @font-face{     (would be used if fonts were kept as ttf and not npm imported)
+    font-family:"Poppins";
+    src:url("../assets/fonts/Poppins-SemiBold.ttf");
+    font-weight:600;
+}
+
+@font-face{
+    font-family:"Inter";
+    src:url("../assets/fonts/Inter-Regular.ttf");
+    font-weight:400;
+}
+
+@font-face{
+    font-family:"Inter";
+    src:url("../assets/fonts/Inter-Medium.ttf");
+    font-weight:500;
+}
+
+@font-face{
+    font-family:"JetBrains Mono";
+    src:url("../assets/fonts/JetBrainsMono-Regular.ttf");
+    font-weight:400;
+} */
+
+/* ---------- Fonts ---------- */
+
+:root{
+
+    --font-title:"Poppins",sans-serif;
+
+    --font-subtitle:"Inter",sans-serif;
+
+    --font-body:"Inter",sans-serif;
+
+    --font-number:"JetBrains Mono",monospace;
+
+}
+
+/* ---------- Headings ---------- */
+
+h1{
+    font-family:var(--font-title);
+    font-size:3rem;
+    font-weight:600;
+    line-height:1.15;
+}
+
+h2{
+    font-family:var(--font-title);
+    font-size:2.25rem;
+    font-weight:600;
+}
+
+h3{
+    font-family:var(--font-title);
+    font-size:1.75rem;
+    font-weight:600;
+}
+
+/* ---------- Text ---------- */
+
+body{
+
+    font-family:var(--font-body);
+
+    font-size:16px;
+
+    line-height:1.7;
+
+}
+
+.subtitle{
+
+    font-family:var(--font-subtitle);
+
+    font-weight:500;
+
+    font-size:1rem;
+
+}
+
+.caption{
+
+    font-family:var(--font-body);
+
+    font-size:.9rem;
+
+}
+
+/* ---------- Numbers ---------- */
+
+.metric{
+
+    font-family:var(--font-number);
+
+    font-size:2rem;
+
+}

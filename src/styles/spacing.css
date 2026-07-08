@@ -1,0 +1,67 @@
+/* =====================================================
+   LifeOS Design Tokens — Spacing & Layout
+   ===================================================== */
+
+:root {
+
+  /* ---------- Container ---------- */
+
+  --container-width: 1280px;
+
+  /* ---------- Section Padding ---------- */
+
+  --section-padding: 6rem;
+  --section-padding-small: 4rem;
+
+  /* ---------- Border Radius ---------- */
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* ---------- Spacing Scale ---------- */
+
+  --space-1: .25rem;   /* 4px */
+  --space-2: .5rem;    /* 8px */
+  --space-3: .75rem;   /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.5rem;   /* 24px */
+  --space-6: 2rem;     /* 32px */
+  --space-7: 3rem;     /* 48px */
+  --space-8: 4rem;     /* 64px */
+  --space-9: 6rem;     /* 96px */
+
+  /* ---------- Gaps ---------- */
+
+  --gap-sm: 1rem;
+  --gap-md: 1.5rem;
+  --gap-lg: 2rem;
+  --gap-xl: 3rem;
+
+  /* ---------- Component Sizes ---------- */
+
+  --navbar-height: 80px;
+  --sidebar-width: 280px;
+
+  /* ---------- Cards ---------- */
+
+  --card-padding: 1.75rem;
+
+  /* ---------- Buttons ---------- */
+
+  --button-padding-y: .85rem;
+  --button-padding-x: 1.8rem;
+
+  /* ---------- Inputs ---------- */
+
+  --input-height: 52px;
+
+  /* ---------- Animation ---------- */
+
+  --transition-fast: .2s ease;
+  --transition-normal: .3s ease;
+  --transition-slow: .45s ease;
+
+}
