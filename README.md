@@ -1,10 +1,7 @@
 # 🌿 LifeOS
-
-> One place for your goals, projects, habits, notes, career, health, finance, and life.
+### One place for your goals, projects, habits, notes, career, health, finance, and life.
 
 LifeOS is a personal productivity operating system designed to help people organize every aspect of their lives through one clean, minimal, and intelligent workspace.
-
-This project is being built as part of my Industrial Training Project (ITR) and is currently under active development.
 
 ---
 
@@ -79,18 +76,7 @@ src/
 
 ---
 
-## 🚧 Current Progress
-
-- ✅ Global Design System
-- ✅ Landing Page (In Progress)
-- ✅ Authentication Architecture
-- 🚧 Dashboard UI
-- 🚧 Database Integration
-- ⏳ AI Features
-
----
-
-## 📌 Status
+## 🚧 Status
 
 This project is currently in active development.
 
