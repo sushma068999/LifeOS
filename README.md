@@ -1,4 +1,5 @@
-# 🌿 LifeOS
+# LifeOS
+
 ### One place for your goals, projects, habits, notes, career, health, finance, and life.
 
 LifeOS is a personal productivity operating system designed to help people organize every aspect of their lives through one clean, minimal, and intelligent workspace.
@@ -49,10 +50,10 @@ LifeOS follows a calm, distraction-free interface inspired by modern productivit
 ## 🛠 Tech Stack
 
 - React
+- React-Router-Dom
 - Vite
 - JavaScript (ES6+)
 - CSS
-- React Router (planned)
 
 ---
 
