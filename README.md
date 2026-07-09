@@ -49,10 +49,10 @@ LifeOS follows a calm, distraction-free interface inspired by modern productivit
 ## 🛠 Tech Stack
 
 - React
+- React-Router-Dom
 - Vite
 - JavaScript (ES6+)
 - CSS
-- React Router (planned)
 
 ---
 
