@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import Button from "../Commons/Button";
 import Container from "../Commons/Container";
 
@@ -80,14 +82,21 @@ export default function Hero() {
               gap: "18px",
               flexWrap: "wrap",
               justifyContent: "center",
-              marginBottom: "70px"
+              marginBottom: "70px",
             }}
           >
             <Button>Download for Windows</Button>
 
-            <Button variant="secondary">
-              Open in Browser
-            </Button>
+            <Link
+              to="/signup"
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              <Button variant="secondary">
+                Open in Browser
+              </Button>
+            </Link>
           </div>
 
           {/* Dashboard Screenshot */}

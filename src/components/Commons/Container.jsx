@@ -1,14 +1,12 @@
-export default function Container({
-  children,
-  style = {},
-}) {
+export default function Container({ children, style = {} }) {
   return (
     <div
-      className="container"
       style={{
-        width: "min(100%, var(--container-width))",
+        width: "100%",
+        maxWidth: "1200px",
         margin: "0 auto",
         padding: "0 2rem",
+        boxSizing: "border-box",
         ...style,
       }}
     >

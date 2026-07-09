@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # 🌿 LifeOS
 ### One place for your goals, projects, habits, notes, career, health, finance, and life.
 
@@ -89,4 +87,3 @@ This project is currently in active development.
 This project is for educational purposes and personal development.
 
 © 2026 LifeOS
->>>>>>> 7265e7c4c9bea348b349013d52b8a97004655d9d
