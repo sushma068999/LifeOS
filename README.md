@@ -4,31 +4,36 @@
 
 LifeOS is a personal productivity operating system designed to help people organize every aspect of their lives through one clean, minimal, and intelligent workspace.
 
+Live Demo: [link]
+
 ---
 
-## ✨ Features
+## ✅ Features
 
-- 📅 Calendar & Scheduling
-- ✅ Smart To-do Manager
-- 🎯 Goal Tracking
-- 📝 Notes & Journal
-- 📚 Personal Curriculum
-- 💼 Career Dashboard
-- 📦 Project Manager
-- ❤️ Health Tracker
-- 💰 Finance Tracker
-- 📊 Analytics Dashboard
-- 🎨 Themes & Customization
+- 
+- Themes & Customization
 
-### Planned Features
+## 🧩 Dashboard Features
 
-- 🤖 AI Assistant
-- 🤖 AI Prioritization
-- 📧 Gmail Integration
-- 💬 WhatsApp Integration
-- 📱 Mobile App
-- 🔔 Smart Notifications
-- 🧩 Third-party Integrations
+- Calendar & Scheduling
+- Smart To-do Manager
+- Goal Tracking
+- Notes & Journal
+- Personal Curriculum
+- Career Dashboard
+- Project Manager
+- Health Tracker
+- Finance Tracker
+- Analytics Dashboard
+
+### Future Roadmap
+
+- AI Assistant
+- AI Prioritization
+- Gmail & WhatsApp Integration
+- Mobile App
+- Smart Notifications
+- Third-party Integrations
 
 ---
 
