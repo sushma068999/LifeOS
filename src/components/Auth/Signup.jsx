@@ -1,7 +1,9 @@
 import AuthLayout from "../../layouts/AuthLayout";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  const navigate = useNavigate();
   return (
     <AuthLayout>
       <div
@@ -82,7 +84,7 @@ export default function Signup() {
           }}
         /> */}
 
-        <button
+        <button onClick={() => navigate("/dashboard")}
           style={{
             marginTop: "8px",
             padding: "16px",
