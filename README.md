@@ -10,8 +10,14 @@ Live Demo: [link]
 
 ## ✅ Features
 
-- 
+- User Authentication (Login/Signup/Forgot Pass)
 - Themes & Customization
+- Collapsible Sidebar
+- Nested Workspace Oganisation
+- Persistent Top Navigation (Tab Bar)
+- Customizable Workspace Structure (by user profile)
+
+---
 
 ## 🧩 Dashboard Features
 
@@ -26,7 +32,9 @@ Live Demo: [link]
 - Finance Tracker
 - Analytics Dashboard
 
-### Future Roadmap
+---
+
+## ⏳ Future Roadmap
 
 - AI Assistant
 - AI Prioritization
@@ -79,7 +87,40 @@ src/
 ├── pages/
 └── App.jsx
 ```
-
+---
+## 📂 Application Workflow
+```
+User Opens LifeOS
+        │
+        ▼
+Authentication
+(Login / Signup)
+        │
+        ▼
+Dashboard
+        │
+        ▼
+Navigate using Sidebar
+        │
+        ▼
+Open Workspace
+        │
+        ├── Study
+        ├── Finance
+        ├── Growth
+        ├── Projects
+        └── Custom Spaces
+        │
+        ▼
+Manage Tasks, Notes,
+Calendar & Personal Data
+        │
+        ▼
+Track Progress
+        │
+        ▼
+Increase Productivity
+```
 ---
 
 ## 🚧 Status
