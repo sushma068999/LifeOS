@@ -19,11 +19,29 @@ Live Demo: [link]
 
 ---
 
-## 🧩 Dashboard Features
+## 🧩 Key Features
+
+### 🧠 Personalised Dashboard
+
+- Multiple User Profiles
+- Student Workspace
+- Professional Workspace
+- Creator Workspace
+- Hobbyists/Self Learner Workspace
+- AI Remarks
+
+### ⚙️ Dynamic Sidebar
+
+- Automatically changing sidebar based on selected profile
+- Nested Workspace Navigation
+- Collapsible & Modern
+
+### 📚 Productivity Ecosystem
 
 - Calendar & Scheduling
 - Smart To-do Manager
 - Goal Tracking
+- Smart Inbox & Auto Scheduling
 - Notes & Journal
 - Personal Curriculum
 - Career Dashboard
@@ -36,12 +54,17 @@ Live Demo: [link]
 
 ## ⏳ Future Roadmap
 
-- AI Assistant
+- AI Productivity Assistant
 - AI Prioritization
+- Cloud Sync across Devices
 - Gmail & WhatsApp Integration
+- Google Calendar & Outlook Integration
 - Mobile App
 - Smart Notifications
 - Third-party Integrations
+- Shared Workspaces & Organisations
+- Premium Features
+- Dynamically Changing Themes based on the time of day
 
 ---
 
@@ -51,22 +74,24 @@ LifeOS follows a calm, distraction-free interface inspired by modern productivit
 
 ### Theme
 
+- Light/Dark/System Themes
 - Off-white background
 - Sage Green accents
 - Soft Blue analytics
 - Minimal shadows
 - Rounded components
 - Clean typography
+- Dynamically Changing Themes based on the time of day
 
 ---
 
 ## 🛠 Tech Stack
 
-- React
+- React + Vite
 - React-Router-Dom
 - Vite
 - JavaScript (ES6+)
-- CSS
+- CSS Variables
 
 ---
 
@@ -84,6 +109,10 @@ src/
 ├── context/
 ├── hooks/
 ├── layouts/
+├── services/
+├── styles/
+├── utils/
+├── config/
 ├── pages/
 └── App.jsx
 ```
@@ -97,6 +126,9 @@ Authentication
 (Login / Signup)
         │
         ▼
+Onboarding
+        │
+        ▼
 Dashboard
         │
         ▼
@@ -106,6 +138,7 @@ Navigate using Sidebar
 Open Workspace
         │
         ├── Study
+        ├── Health
         ├── Finance
         ├── Growth
         ├── Projects
@@ -126,6 +159,16 @@ Increase Productivity
 ## 🚧 Status
 
 This project is currently in active development.
+
+### Upcoming Features
+
+- Dashboard & Categories
+- Dashboard Widgets
+- User Profile-Specific Dashboard & Sidebar
+- Supabase Authentication
+- Smart Emails Notifications
+- Smart Reminders & Recurring Tasks
+- Search Functionality
 
 ---
 
