@@ -1,23 +1,37 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 
-export default function TabBar() {
-  const [tabs, setTabs] = useState([
-    "Dashboard",
-    "Calendar",
-    "Tasks",
-  ]);
-
-  const [active, setActive] = useState("Dashboard");
-
-  const closeTab = (tab, e) => {
+export default function TabBar({
+  tabs,
+  setTabs,
+  activeTab,
+  setActiveTab,
+})
+{
+  const closeTab = (title, e) => {
     e.stopPropagation();
 
-    const updated = tabs.filter((t) => t !== tab);
+    const updated = tabs.filter(
+      (t) => t.title !== title
+    );
+
+    // If every tab is closed → reopen Dashboard
+    if (updated.length === 0) {
+      const dashboard = {
+        title: "Dashboard",
+        id: "dashboard",
+      };
+
+      setTabs([dashboard]);
+      setActiveTab("Dashboard");
+      return;
+    }
+
     setTabs(updated);
 
-    if (active === tab && updated.length > 0) {
-      setActive(updated[0]);
+    // If the active tab was closed → activate the first remaining tab
+    if (activeTab === title) {
+      setActiveTab(updated[0].title);
     }
   };
 
@@ -36,8 +50,8 @@ export default function TabBar() {
     >
       {tabs.map((tab) => (
         <button
-          key={tab}
-          onClick={() => setActive(tab)}
+          key={tab.title}
+          onClick={() => setActiveTab(tab.title)}
           style={{
             display: "flex",
             alignItems: "center",
@@ -47,19 +61,19 @@ export default function TabBar() {
             padding: "6px 12px",
             cursor: "pointer",
             background:
-              active === tab ? "white" : "transparent",
+              activeTab === tab.title ? "white" : "transparent",
             color:
-              active === tab
+              activeTab === tab.title
                 ? "var(--sage-green)"
                 : "var(--text-secondary)",
             transition: ".2s",
           }}
         >
-          {tab}
+          {tab.title}
 
           <X
             size={14}
-            onClick={(e) => closeTab(tab, e)}
+            onClick={(e) => closeTab(tab.title, e)}
           />
         </button>
       ))}

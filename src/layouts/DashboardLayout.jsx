@@ -1,8 +1,14 @@
 import Sidebar from "../components/Layout/Sidebar";
 import Topbar from "../components/Layout/Topbar";
 import TabBar from "../components/Layout/TabBar";
+import { useState } from "react";
 
 export default function DashboardLayout({ children }) {
+  const [tabs, setTabs] = useState([
+    {title:"Dashboard"}
+  ]);
+  const [activeTab, setActiveTab] = useState("Dashboard");
+
   return (
     <div
       style={{
@@ -23,7 +29,12 @@ export default function DashboardLayout({ children }) {
           zIndex: 1000,
         }}
       > */}
-        <Sidebar />
+        <Sidebar 
+          tabs={tabs}
+          setTabs={setTabs}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
       {/* </div> */}
 
       {/* Main Content */}
@@ -49,7 +60,12 @@ export default function DashboardLayout({ children }) {
           <Topbar />
         </div>
 
-        <TabBar />
+        <TabBar 
+          tabs={tabs}
+          setTabs={setTabs}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
 
         {/* Page Content */}
 

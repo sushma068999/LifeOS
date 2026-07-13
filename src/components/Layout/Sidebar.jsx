@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { PanelLeft, Settings } from "lucide-react";
+import { PanelLeft, Settings, TabletSmartphone } from "lucide-react";
 import { sidebarConfig } from "../../config/SidebarConfig";
 import SidebarItem from "./SidebarItem";
 
-export default function Sidebar() {
+export default function Sidebar({
+  tabs,
+  setTabs,
+  activeTab,
+  setActiveTab,
+}) {
   const [collapsed, setCollapsed] = useState(false);
   const [active, setActive] = useState("Dashboard");
   const [openGroup, setOpenGroup] = useState({
@@ -66,10 +71,14 @@ export default function Sidebar() {
             </span>
           )}
         </div>
+      </div>
 
         {/* Navigation */}
         <div
           style={{
+            flex: 1,
+            overflowY: "auto",
+
             padding: "10px",
             display: "flex",
             flexDirection: "column",
@@ -85,15 +94,21 @@ export default function Sidebar() {
               setActive={setActive}
               openGroup={openGroup}
               setOpenGroup={setOpenGroup}
+
+              tabs={tabs}
+              setTabs={setTabs}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
             />
           ))}
-        </div>
       </div>
-
+      
       {/* Bottom */}
       <div
         style={{
           padding: "10px",
+          borderTop: "1px solid var(--border-light)",
+          background: "var(--bg-sidebar)"
         }}
       >
         <SidebarItem
@@ -107,6 +122,10 @@ export default function Sidebar() {
           setActive={setActive}
           openGroup={openGroup}
           setOpenGroup={setOpenGroup}
+          tabs={tabs}
+          setTabs={setTabs}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
         />
       </div>
     </aside>

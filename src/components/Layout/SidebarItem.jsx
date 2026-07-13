@@ -7,6 +7,11 @@ export default function SidebarItem({
   setActive,
   openGroup,
   setOpenGroup,
+
+  tabs,
+  setTabs,
+  activeTab,
+  setActiveTab,
 }) {
   const Icon = item.icon;
   const isGroup = item.children;
@@ -26,7 +31,19 @@ export default function SidebarItem({
               [item.title]: !prev[item.title],
             }));
           } else {
+
+            if (!tabs.some(tab => tab.title === item.title)) {
+              setTabs([
+                ...tabs,
+                {
+                  title: item.title,
+                  id: item.id,
+                },
+              ]);
+            }
+
             setActive(item.title);
+            setActiveTab(item.title);
           }
         }}
         style={{
@@ -82,7 +99,6 @@ export default function SidebarItem({
             </span>
           )}
         </div>
-
         {!collapsed && isGroup && (
           isOpen ? (
             <ChevronDown
@@ -97,6 +113,60 @@ export default function SidebarItem({
           )
         )}
       </button>
+
+        {collapsed && isGroup && isOpen && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "8px",
+              marginTop: "8px",
+            }}
+          >
+            {item.children.map((child) => {
+              const ChildIcon = child.icon;
+
+              return (
+                <button
+                  key={child.title}
+                  onClick={() => {
+                    if (!tabs.some(tab => tab.title === child.title)) {
+                      setTabs([
+                        ...tabs,
+                        {
+                          title: child.title,
+                          id: child.id,
+                        },
+                      ]);
+                    }
+
+                    setActive(child.title);
+                    setActiveTab(child.title);
+                  }}
+                  style={{
+                    border: "none",
+                    background: "transparent",
+                    cursor: "pointer",
+                    padding: "6px",
+                    borderRadius: "8px",
+                  }}
+                >
+                  {ChildIcon && (
+                    <ChildIcon
+                      size={16}
+                      color={
+                        active === child.title
+                          ? activeColor
+                          : "#7b7b7b"
+                      }
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        )}
 
       {/* Children */}
 
@@ -117,7 +187,20 @@ export default function SidebarItem({
             return (
               <button
                 key={child.title}
-                onClick={() => setActive(child.title)}
+                onClick={() => {
+                  if (!tabs.some(tab => tab.title === child.title)) {
+                    setTabs([
+                      ...tabs,
+                      {
+                        title: child.title,
+                        id: child.id,
+                      },
+                    ]);
+                  }
+
+                  setActive(child.title);
+                  setActiveTab(child.title);
+                }}
                 style={{
                   border: "none",
                   background: "transparent",
