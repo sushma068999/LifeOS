@@ -108,6 +108,7 @@ src/
 │   └── Layout/
 ├── context/
 ├── hooks/
+├── data/
 ├── layouts/
 ├── services/
 ├── styles/
@@ -126,7 +127,7 @@ Authentication
 (Login / Signup)
         │
         ▼
-Onboarding
+Onboarding popup steps
         │
         ▼
 Dashboard
@@ -137,11 +138,13 @@ Navigate using Sidebar
         ▼
 Open Workspace
         │
-        ├── Study
+        ├── Goals
+        ├── Career
         ├── Health
         ├── Finance
         ├── Growth
         ├── Projects
+        ├── Study
         └── Custom Spaces
         │
         ▼
