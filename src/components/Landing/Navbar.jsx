@@ -1,5 +1,5 @@
-import Button from "../commons/Button";
-import Container from "../commons/Container";
+import Button from "../Commons/Button";
+import Container from "../Commons/Container";
 
 export default function Navbar() {
   return (

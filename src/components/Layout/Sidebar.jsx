@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PanelLeft, Settings, TabletSmartphone } from "lucide-react";
-import { sidebarConfig } from "../../config/SidebarConfig";
+import { sidebarConfig } from "../../config/sidebarConfig";
 import SidebarItem from "./SidebarItem";
 
 export default function Sidebar({
