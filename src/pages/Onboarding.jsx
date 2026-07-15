@@ -3,7 +3,7 @@ import { cardStyle } from "../styles/cardStyle";
 
 import StepIndicator from "../components/Auth/OnboardingPP/StepIndicator";
 import Step1Name from "../components/Auth/OnboardingPP/Step1Name";
-import Step2Profile from "../components/Auth/OnboardingPP/step2Profile";
+import Step2Profile from "../components/Auth/OnboardingPP/Step2Profile";
 import Step3Interests from "../components/Auth/OnboardingPP/Step3Interests";
 import Step4Plan from "../components/Auth/OnboardingPP/Step4Plan";
 
