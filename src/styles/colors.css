@@ -7,7 +7,7 @@
   /* Backgrounds */
 
   --bg-main:#F7F8F5;
-  --bg-surface:#FFFFFF;
+  --bg-surface:#FCFCFA;
   --bg-sidebar:#EEF3F0;
   --bg-hover:#E6ECE8;
 
@@ -16,6 +16,10 @@
   --primary:#6E9B8A;
   --primary-dark:#567B6D;
   --primary-light:#AFCFC1;
+  --primary-soft:#EEF6F2;
+  --primary-hover:#DCEBE4;
+  --primary-border:#8FB8A8;
+
 
   /* Accent (Soft Blue) */
 

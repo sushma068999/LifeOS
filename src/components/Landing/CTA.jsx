@@ -23,7 +23,8 @@ export default function CTA() {
             style={{
               display: "inline-block",
               padding: "8px 18px",
-              background: "var(--primary-light)",
+              background: "none",
+              border: "1px solid var(--border)",
               color: "var(--primary-dark)",
               borderRadius: "999px",
               fontSize: "14px",
