@@ -4,7 +4,7 @@
 
 LifeOS is a personal productivity operating system designed to help people organize every aspect of their lives through one clean, minimal, and intelligent workspace.
 
-Live Demo: [link]
+Live Demo: https://lifeos-your-personal-os.vercel.app/
 
 ---
 
