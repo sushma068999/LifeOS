@@ -1,24 +1,22 @@
 import { ChevronDown, ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useTabs } from "../../context/TabContext";
 
 export default function SidebarItem({
   item,
   collapsed,
   active,
-  setActive,
   openGroup,
   setOpenGroup,
-
-  tabs,
-  setTabs,
-  activeTab,
-  setActiveTab,
 }) {
   const Icon = item.icon;
   const isGroup = item.children;
   const isOpen = openGroup[item.title];
 
-  const activeColor = "#7A9E7E"; // Replace with your sage green variable later
+  const activeColor = "var(--primary)"; // Replace with your sage green variable later
 
+  const navigate = useNavigate();
+  const { openTab } = useTabs();
   return (
     <div>
       {/* Main Button */}
@@ -31,19 +29,17 @@ export default function SidebarItem({
               [item.title]: !prev[item.title],
             }));
           } else {
+            openTab({
+              title: item.title,
+              id: item.id ?? item.title.toLowerCase(),
+              path: item.path,
+            });
+            navigate(item.path);
 
-            if (!tabs.some(tab => tab.title === item.title)) {
-              setTabs([
-                ...tabs,
-                {
-                  title: item.title,
-                  id: item.id,
-                },
-              ]);
+
+            if (item.path) {
+              navigate(item.path);
             }
-
-            setActive(item.title);
-            setActiveTab(item.title);
           }
         }}
         style={{
@@ -131,18 +127,16 @@ export default function SidebarItem({
                 <button
                   key={child.title}
                   onClick={() => {
-                    if (!tabs.some(tab => tab.title === child.title)) {
-                      setTabs([
-                        ...tabs,
-                        {
-                          title: child.title,
-                          id: child.id,
-                        },
-                      ]);
-                    }
+                    openTab({
+                      title: child.title,
+                      id: child.id ?? child.title.toLowerCase(),
+                      path: child.path,
+                    });
+                    navigate(child.path);
 
-                    setActive(child.title);
-                    setActiveTab(child.title);
+                    if (child.path) {
+                      navigate(child.path)
+                    }
                   }}
                   style={{
                     border: "none",
@@ -188,18 +182,17 @@ export default function SidebarItem({
               <button
                 key={child.title}
                 onClick={() => {
-                  if (!tabs.some(tab => tab.title === child.title)) {
-                    setTabs([
-                      ...tabs,
-                      {
-                        title: child.title,
-                        id: child.id,
-                      },
-                    ]);
-                  }
+                  openTab({
+                    title: child.title,
+                    id: child.id ?? child.title.toLowerCase(),
+                    path: child.path,
+                  });
+                  navigate(child.path);
 
-                  setActive(child.title);
-                  setActiveTab(child.title);
+
+                  if (child.path) {
+                    navigate(child.path)
+                  }
                 }}
                 style={{
                   border: "none",

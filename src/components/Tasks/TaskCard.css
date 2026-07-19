@@ -1,0 +1,41 @@
+.task-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:var(--space-5);
+
+    background:var(--bg-surface);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-md);
+
+    transition:var(--transition-normal);
+}
+
+.task-card:hover{
+    background:var(--bg-hover);
+}
+
+.task-info h4{
+    margin:0;
+    color:var(--text-primary);
+}
+
+.task-info p{
+    margin-top:4px;
+    color:var(--text-muted);
+    font-size:.9rem;
+}
+
+.task-completed{
+    text-decoration:line-through;
+    color:var(--text-muted);
+}
+
+.task-check{
+    background:none;
+    border:none;
+    cursor:pointer;
+}

@@ -1,16 +1,15 @@
 import { useState } from "react";
+import { useTabs } from "../../context/TabContext";
+import { useUser } from "../../context/UserContext";
+
 import { PanelLeft, Settings, TabletSmartphone } from "lucide-react";
 import { sidebarConfig } from "../../config/sidebarConfig";
 import SidebarItem from "./SidebarItem";
 
-export default function Sidebar({
-  tabs,
-  setTabs,
-  activeTab,
-  setActiveTab,
-}) {
+export default function Sidebar() {
+  const { activeTab } = useTabs();
+
   const [collapsed, setCollapsed] = useState(false);
-  const [active, setActive] = useState("Dashboard");
   const [openGroup, setOpenGroup] = useState({
     Workspace: true,
   });
@@ -23,8 +22,8 @@ export default function Sidebar({
     }));
   };
 
-  const profile = "student";
-  const menu = sidebarConfig[profile];
+  const { user } = useUser();
+  const menu = sidebarConfig[user.profile];
 
   return (
     <aside
@@ -90,15 +89,9 @@ export default function Sidebar({
               key={item.title}
               item={item}
               collapsed={collapsed}
-              active={active}
-              setActive={setActive}
+              active={activeTab}
               openGroup={openGroup}
               setOpenGroup={setOpenGroup}
-
-              tabs={tabs}
-              setTabs={setTabs}
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
             />
           ))}
       </div>
@@ -118,14 +111,9 @@ export default function Sidebar({
             path: "/settings",
           }}
           collapsed={collapsed}
-          active={active}
-          setActive={setActive}
+          active={activeTab}
           openGroup={openGroup}
           setOpenGroup={setOpenGroup}
-          tabs={tabs}
-          setTabs={setTabs}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
         />
       </div>
     </aside>

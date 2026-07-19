@@ -1,8 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
+
+import { TabProvider } from './context/TabContext.jsx'
+import { UserProvider } from './context/UserContext.jsx'
+import { DashboardProvider } from './context/DashboardContext.jsx'
 
 import "@fontsource/poppins/600.css"
 import "@fontsource/inter/400.css"
@@ -15,11 +19,16 @@ import "./styles/globals.css"
 import "./styles/spacing.css"
 import "./styles/variables.css"
 
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <App/>
+      <UserProvider>
+        <DashboardProvider>
+          <TabProvider>
+            <App/>
+        </TabProvider>
+        </DashboardProvider>
+      </UserProvider>
     </BrowserRouter>
   </StrictMode>,
 )

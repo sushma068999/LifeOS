@@ -1,14 +1,9 @@
 import Sidebar from "../components/Layout/Sidebar";
 import Topbar from "../components/Layout/Topbar";
 import TabBar from "../components/Layout/TabBar";
-import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
-export default function DashboardLayout({ children }) {
-  const [tabs, setTabs] = useState([
-    {title:"Dashboard"}
-  ]);
-  const [activeTab, setActiveTab] = useState("Dashboard");
-
+export default function DashboardLayout() {
   return (
     <div
       style={{
@@ -19,7 +14,7 @@ export default function DashboardLayout({ children }) {
     >
       {/* Fixed Sidebar */}
 
-      {/* <div
+      <div
         style={{
           position: "fixed",
           left: 0,
@@ -28,20 +23,15 @@ export default function DashboardLayout({ children }) {
           height: "100vh",
           zIndex: 1000,
         }}
-      > */}
-        <Sidebar 
-          tabs={tabs}
-          setTabs={setTabs}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
-      {/* </div> */}
+      >
+        <Sidebar/>
+      </div>
 
       {/* Main Content */}
 
       <div
         style={{
-          marginLeft: 0,
+          marginLeft: "245px",
           flex: 1,
           display: "flex",
           flexDirection: "column",
@@ -58,25 +48,31 @@ export default function DashboardLayout({ children }) {
           }}
         >
           <Topbar />
+          <TabBar/>
         </div>
 
-        <TabBar 
-          tabs={tabs}
-          setTabs={setTabs}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-        />
+        {/* <div
+          style={{
+            position: "sticky",
+            top: "64px",
+            zIndex: 800,
+            background: "var(--bg-main)"
+          }}
+        >
+          
+        </div> */}
 
         {/* Page Content */}
 
         <main
           style={{
             flex: 1,
-            padding: "2rem",
+            padding: "32px",
             overflowY: "auto",
+            height: "calc(100vh - 64px - 42px)"
           }}
         >
-          {children}
+          <Outlet/>
         </main>
       </div>
     </div>

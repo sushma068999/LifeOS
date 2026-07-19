@@ -1,39 +1,15 @@
-import { useState } from "react";
 import { X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useTabs } from "../../context/TabContext";
 
-export default function TabBar({
-  tabs,
-  setTabs,
-  activeTab,
-  setActiveTab,
-})
-{
-  const closeTab = (title, e) => {
-    e.stopPropagation();
-
-    const updated = tabs.filter(
-      (t) => t.title !== title
-    );
-
-    // If every tab is closed → reopen Dashboard
-    if (updated.length === 0) {
-      const dashboard = {
-        title: "Dashboard",
-        id: "dashboard",
-      };
-
-      setTabs([dashboard]);
-      setActiveTab("Dashboard");
-      return;
-    }
-
-    setTabs(updated);
-
-    // If the active tab was closed → activate the first remaining tab
-    if (activeTab === title) {
-      setActiveTab(updated[0].title);
-    }
-  };
+export default function TabBar() {
+  const navigate = useNavigate();
+  const {
+    tabs,
+    activeTab,
+    setActiveTab,
+    closeTab,
+  } = useTabs();
 
   return (
     <div
@@ -51,7 +27,12 @@ export default function TabBar({
       {tabs.map((tab) => (
         <button
           key={tab.title}
-          onClick={() => setActiveTab(tab.title)}
+          onClick={() => {
+            setActiveTab(tab.title);
+            if (tab.path) {
+              navigate(tab.path);
+            }
+          }}
           style={{
             display: "flex",
             alignItems: "center",
@@ -64,7 +45,7 @@ export default function TabBar({
               activeTab === tab.title ? "white" : "transparent",
             color:
               activeTab === tab.title
-                ? "var(--sage-green)"
+                ? "var(--primary)"
                 : "var(--text-secondary)",
             transition: ".2s",
           }}
@@ -73,7 +54,13 @@ export default function TabBar({
 
           <X
             size={14}
-            onClick={(e) => closeTab(tab.title, e)}
+            onClick={(e) => {
+              e.stopPropagation();
+              const nextTab = closeTab(tab.title);
+              if (nextTab?.path) {
+                navigate(nextTab.path)
+              }
+            }}
           />
         </button>
       ))}

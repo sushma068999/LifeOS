@@ -2,6 +2,7 @@ import {
     GraduationCap,
     Briefcase,
     Palette,
+    BookOpen,
     Sparkles,
 } from "lucide-react";
 
@@ -20,6 +21,11 @@ const defaultProfiles = [
     id: "creator",
     title: "Creator",
     icon: Palette,
+  },
+  {
+    id: "hobbyist",
+    title: "Multi-Hobbyist",
+    icon: BookOpen,
   },
   {
     id: "other",

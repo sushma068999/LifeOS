@@ -17,7 +17,7 @@ const stats = [
     desc: "Access your life from anywhere",
   },
   {
-    number: "∞",
+    number: "ᦠ",
     title: "Possibilities",
     desc: "Grow LifeOS the way you want",
   },
