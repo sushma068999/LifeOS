@@ -111,14 +111,14 @@ src/
 ├── context/
 ├── hooks/
 ├── data/
-│   ├── dashboard
+│   └── dashboard
 ├── layouts/
 ├── services/
 ├── widgets/
 │   ├── GreetingCard/
 │   ├── QuickStats/
 │   ├── TodaysFocus/
-│   ├── AIInsights/
+│   └── AIInsights/
 ├── styles/
 ├── utils/
 ├── config/
