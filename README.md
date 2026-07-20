@@ -104,14 +104,14 @@ src/
 │   ├── Commons/
 │   ├── Landing/
 │   ├── Auth/
-│   ├── ├── OnboardingPP
+│   │   └── OnboardingPP/
 │   ├── Dashboard/
-│   ├── ├── Widgets
+│   │   └── Widgets/
 │   └── Layout/
 ├── context/
 ├── hooks/
 ├── data/
-│   └── dashboard
+│   └── dashboard/
 ├── layouts/
 ├── services/
 ├── widgets/
