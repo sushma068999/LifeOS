@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useTabs } from "../../context/TabContext"
 
 export default function QuickStats({
     title,
@@ -8,10 +9,18 @@ export default function QuickStats({
 }) {
 
     const navigate = useNavigate();
+    const { openTab } = useTabs();
 
     return (
         <div
-        onClick={() => navigate(path)}
+        onClick={() => {
+            openTab ({
+                id: path.slice(1),
+                title,
+                path,
+            });
+            navigate(path);
+        }}
         style={{
             flex: 1,
             cursor: "pointer",

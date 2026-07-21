@@ -1,13 +1,13 @@
 import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTabs } from "../../context/TabContext";
+import { useLocation } from "react-router-dom";
 
 export default function TabBar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     tabs,
-    activeTab,
-    setActiveTab,
     closeTab,
   } = useTabs();
 
@@ -26,9 +26,8 @@ export default function TabBar() {
     >
       {tabs.map((tab) => (
         <button
-          key={tab.title}
+          key={tab.id}
           onClick={() => {
-            setActiveTab(tab.title);
             if (tab.path) {
               navigate(tab.path);
             }
@@ -42,9 +41,11 @@ export default function TabBar() {
             padding: "6px 12px",
             cursor: "pointer",
             background:
-              activeTab === tab.title ? "white" : "transparent",
+              location.pathname === tab.path 
+              ? "white" 
+              : "transparent",
             color:
-              activeTab === tab.title
+              location.pathname === tab.path
                 ? "var(--primary)"
                 : "var(--text-secondary)",
             transition: ".2s",

@@ -34,8 +34,6 @@ export default function SidebarItem({
               id: item.id ?? item.title.toLowerCase(),
               path: item.path,
             });
-            navigate(item.path);
-
 
             if (item.path) {
               navigate(item.path);
@@ -132,7 +130,6 @@ export default function SidebarItem({
                       id: child.id ?? child.title.toLowerCase(),
                       path: child.path,
                     });
-                    navigate(child.path);
 
                     if (child.path) {
                       navigate(child.path)
@@ -187,8 +184,6 @@ export default function SidebarItem({
                     id: child.id ?? child.title.toLowerCase(),
                     path: child.path,
                   });
-                  navigate(child.path);
-
 
                   if (child.path) {
                     navigate(child.path)

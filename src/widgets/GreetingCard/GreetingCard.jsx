@@ -94,19 +94,19 @@ export default function GreetingCard() {
                     path= "/tasks" 
                 />
                 <QuickStats 
-                    title="Habits" 
+                    title="Habit Tracker" 
                     value="0"
                     icon={Heart}
                     path= "/habits" 
                 />
                 <QuickStats 
-                    title="Events" 
+                    title="Calendar" 
                     value="0"
                     icon={CalendarDays}
                     path= "/calendar" 
                 />
                 <QuickStats 
-                    title="Focus" 
+                    title="Goals" 
                     value="0"
                     icon={Target}
                     path= "/goals" 

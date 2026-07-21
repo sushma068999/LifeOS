@@ -1,21 +1,21 @@
 import { useState } from "react";
 import Onboarding from "./Onboarding";
 import { useUser } from "../context/UserContext";
-import TodayFocus from "../widgets/TodaysFocus/TodaysFocus";
+import { useDashboard } from "../context/DashboardContext";
+import WidgetRenderer from "../components/Dashboard/Widgets/WidgetRenderer";
 
-import DashboardLayout from "../layouts/DashboardLayout";
-import GreetingCard from "../widgets/GreetingCard/GreetingCard";
-import QuickStats from "../widgets/QuickStats/QuickStats";
-import AIInsights from "../widgets/AIInsights/AIInsights";
+import AddWidgetCard from "../components/Dashboard/Widgets/AddWidgetCard";
 
 export default function Dashboard() {
   const { setUser } = useUser();
+  const { widgets } = useDashboard();
   const [showOnboarding, setShowOnboarding] = useState(() => {
     return localStorage.getItem("lifeos-onboarding") !== "done";
   });
+
   return (
   <>
-    <GreetingCard />
+    <WidgetRenderer widgetId= "greeting" />
     <div
       style={{
         display: "grid",
@@ -25,9 +25,21 @@ export default function Dashboard() {
         alignItems: "start",
       }}
     >
-      <TodayFocus />
-      <AIInsights />
+      {widgets.includes("todayFocus") ? (
+        <WidgetRenderer widgetId= "todayFocus" />
+      ) : (
+        <div />
+      )}
+
+      {widgets.includes("aiInsights") ? (
+        <WidgetRenderer widgetId= "aiInsights" />
+      ) : (
+        <div />
+      )}
+      
     </div>
+
+    <AddWidgetCard />
 
     {showOnboarding && (
       <Onboarding

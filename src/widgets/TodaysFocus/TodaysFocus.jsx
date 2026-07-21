@@ -1,7 +1,7 @@
 import { Circle } from "lucide-react";
 import { cardStyle } from "../../styles/cardStyle";
 
-export default function TodayFocus() {
+export default function TodaysFocus() {
 
   const focusItems = [
     {

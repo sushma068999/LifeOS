@@ -1,9 +1,29 @@
 import Sidebar from "../components/Layout/Sidebar";
 import Topbar from "../components/Layout/Topbar";
 import TabBar from "../components/Layout/TabBar";
-import { Outlet } from "react-router-dom";
+
+import { Outlet, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useTabs } from "../context/TabContext";
 
 export default function DashboardLayout() {
+  const location = useLocation();
+  const {
+    tabs,
+    setActiveTab,
+  } = useTabs();
+
+  useEffect(() => {
+    const currentTab = tabs.find(tab => tab.path === location.pathname);
+    if (currentTab) {
+      setActiveTab(currentTab.title);
+    }
+  }, [
+    location.pathname,
+    tabs,
+    setActiveTab,
+  ]);
+  
   return (
     <div
       style={{
