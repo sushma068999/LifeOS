@@ -104,13 +104,21 @@ src/
 │   ├── Commons/
 │   ├── Landing/
 │   ├── Auth/
+│   │   └── OnboardingPP/
 │   ├── Dashboard/
+│   │   └── Widgets/
 │   └── Layout/
 ├── context/
 ├── hooks/
 ├── data/
+│   └── dashboard/
 ├── layouts/
 ├── services/
+├── widgets/
+│   ├── GreetingCard/
+│   ├── QuickStats/
+│   ├── TodaysFocus/
+│   └── AIInsights/
 ├── styles/
 ├── utils/
 ├── config/
