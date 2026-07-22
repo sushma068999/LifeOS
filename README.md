@@ -98,6 +98,7 @@ Instead of managing 8 apps & 8 passwords, get everything under 1 app & 1 passwor
   - Cloud Sync
 - Customization
   - Dynamically changing themes based on time of the day
+  - Living Companion System (Tree/Planet/Pet) that evolves over time based on user's overall activity in LifeOS.
 - Collaboration
   - Shared Workspaces
 - Business
