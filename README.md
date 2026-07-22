@@ -136,7 +136,16 @@ LifeOS follows a calm, distraction-free interface inspired by modern productivit
 - Dynamically Changing Themes based on the time of day
 
 ---
+## 🏗️ Architecture
 
+LifeOS is built around reusable configuration-driven components.
+
+- Sidebar generated from profile configuration
+- Dashboard generated through widget registry
+- Context API for global state
+- Modular pages for each workspace
+
+---
 ## 📂 Project Structure
 
 ```text
