@@ -1,26 +1,26 @@
-import defaultInterests from "../../../data/defaultInterests";
+import { modulesList } from "../../../config/modules/modulesList";
 
-export default function Step3Interests({
+export default function Step3Modules({
     user,
     setUser,
 }) {
-    function toggleInterest(interest) {
+    function toggleModule(moduleId) {
         const alreadySelected =
-        user.interests.includes(interest);
+        user.modules.includes(moduleId);
 
         if (alreadySelected) {
             setUser({
                 ...user,
-                interests: user.interests.filter(
-                (item) => item !== interest
+                modules: user.modules.filter(
+                (item) => item !== moduleId
                 ),
         });
         } else {
             setUser({
                 ...user,
-                interests: [
-                ...user.interests,
-                interest,
+                modules: [
+                ...user.modules,
+                moduleId,
                 ],
             });
         }
@@ -51,15 +51,15 @@ export default function Step3Interests({
                     gap: "12px",
                 }}
                 >
-                {defaultInterests.map((interest) => {
+                {modulesList.map((module) => {
                     const selected =
-                    user.interests.includes(interest);
+                    (user.modules ?? []).includes(module.id);
 
                     return (
                     <button
-                        key={interest}
+                        key={module.id}
                         onClick={() =>
-                        toggleInterest(interest)
+                        toggleModule(module.id)
                         }
                         style={{
                         padding: "12px 18px",
@@ -78,7 +78,7 @@ export default function Step3Interests({
                         transition: "0.2s",
                         }}
                     >
-                        {interest}
+                        {module.title}
                     </button>
                     );
                 })}

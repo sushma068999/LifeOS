@@ -35,17 +35,6 @@ export default function Login() {
           </p>
         </div>
 
-        {/* <input
-          placeholder="Full Name"
-          style={{
-            padding: "16px",
-            borderRadius: "14px",
-            border: "1px solid var(--border)",
-            fontSize: "1rem",
-            outline: "none",
-          }}
-        /> */}
-
         <input
           placeholder="Email"
           type="email"
@@ -118,18 +107,6 @@ export default function Login() {
           </Link>
         </div>
 
-        {/* <input
-          placeholder="Confirm Password"
-          type="password"
-          style={{
-            padding: "16px",
-            borderRadius: "14px",
-            border: "1px solid var(--border)",
-            fontSize: "1rem",
-            outline: "none",
-          }}
-        /> */}
-
         <button
           style={{
             marginTop: "8px",
@@ -192,25 +169,6 @@ export default function Login() {
         >
           Continue with Google
         </button>
-
-        {/* <p
-          style={{
-            marginTop: "12px",
-            textAlign: "center",
-            color: "var(--text-secondary)",
-          }}
-        >
-          Forgot Password{" "}
-          <span
-            style={{
-              color: "var(--primary)",
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
-          >
-            Reset
-          </span>
-        </p> */}
       </div>
     </AuthLayout>
   );

@@ -7,6 +7,7 @@ import App from './App.jsx'
 import { TabProvider } from './context/TabContext.jsx'
 import { UserProvider } from './context/UserContext.jsx'
 import { DashboardProvider } from './context/DashboardContext.jsx'
+import { WidgetProvider } from './context/WidgetContext.jsx'
 
 import "@fontsource/poppins/600.css"
 import "@fontsource/inter/400.css"
@@ -24,9 +25,11 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <UserProvider>
         <DashboardProvider>
-          <TabProvider>
-            <App/>
-        </TabProvider>
+          <WidgetProvider>
+            <TabProvider>
+              <App/>
+            </TabProvider>
+          </WidgetProvider>
         </DashboardProvider>
       </UserProvider>
     </BrowserRouter>

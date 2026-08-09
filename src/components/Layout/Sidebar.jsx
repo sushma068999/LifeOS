@@ -3,13 +3,15 @@ import { useTabs } from "../../context/TabContext";
 import { useUser } from "../../context/UserContext";
 
 import { PanelLeft, Settings, TabletSmartphone } from "lucide-react";
-import { sidebarConfig } from "../../config/sidebarConfig";
 import SidebarItem from "./SidebarItem";
+import { buildWorkspace } from "../../config/buildWorkspace";
 
-export default function Sidebar() {
+export default function Sidebar({
+  collapsed,
+  setCollapsed,
+}) {
   const { activeTab } = useTabs();
 
-  const [collapsed, setCollapsed] = useState(false);
   const [openGroup, setOpenGroup] = useState({
     Workspace: true,
   });
@@ -23,7 +25,15 @@ export default function Sidebar() {
   };
 
   const { user } = useUser();
-  const menu = sidebarConfig[user.profile];
+  const { sidebar: menu } = buildWorkspace(user);
+
+  const analyticsItem = menu.find(
+      (item) => item.path === "/analytics"
+  );
+
+  const mainMenu = menu.filter(
+      (item) => item.path !== "/analytics"
+  );
 
   return (
     <aside
@@ -84,7 +94,7 @@ export default function Sidebar() {
             gap: "6px",
           }}
         >
-          {menu.map((item) => (
+          {mainMenu.map((item) => (
             <SidebarItem
               key={item.title}
               item={item}
@@ -104,6 +114,16 @@ export default function Sidebar() {
           background: "var(--bg-sidebar)"
         }}
       >
+        {analyticsItem && (
+          <SidebarItem
+              item={analyticsItem}
+              collapsed={collapsed}
+              active={activeTab}
+              openGroup={openGroup}
+              setOpenGroup={setOpenGroup}
+          />
+        )}
+
         <SidebarItem
           item={{
             title: "Settings",

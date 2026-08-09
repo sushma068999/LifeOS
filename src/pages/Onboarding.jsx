@@ -4,8 +4,10 @@ import { cardStyle } from "../styles/cardStyle";
 import StepIndicator from "../components/Auth/OnboardingPP/StepIndicator";
 import Step1Name from "../components/Auth/OnboardingPP/Step1Name";
 import Step2Profile from "../components/Auth/OnboardingPP/Step2Profile";
-import Step3Interests from "../components/Auth/OnboardingPP/Step3Interests";
+import Step3Modules from "../components/Auth/OnboardingPP/Step3Modules";
 import Step4Plan from "../components/Auth/OnboardingPP/Step4Plan";
+
+import { buildDashboard } from "../config/buildDashboard";
 
 export default function Onboarding({
     onFinish,
@@ -15,7 +17,8 @@ export default function Onboarding({
     const [user, setUser] = useState({
         name: "",
         profile: "",
-        interests: [],
+        modules: [],
+        dashboard: [],
         plan: "free",
     });
 
@@ -34,7 +37,7 @@ export default function Onboarding({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: 999,
+            zIndex: "var(--z-sidebar)",
             padding: "24px",
         }}
         >
@@ -63,7 +66,7 @@ export default function Onboarding({
             />
             )}
             {step === 3 && (
-            <Step3Interests
+            <Step3Modules
                 user={user}
                 setUser={setUser}
             />
@@ -109,7 +112,12 @@ export default function Onboarding({
                     if (step < 4) {
                         setStep(step + 1);
                     } else {
-                        onFinish(user);
+                        const dashboard = buildDashboard(user);
+
+                        onFinish({
+                            ...user,
+                            dashboard,
+                        });
                     }
                 }}
                 style={{

@@ -1,4 +1,4 @@
-const defaultInterests = [
+const defaultModules = [
     "Fitness",
     "Health",
     "Study",
@@ -12,4 +12,4 @@ const defaultInterests = [
     "Journaling"
 ];
 
-export default defaultInterests;
+export default defaultModules;

@@ -3,18 +3,24 @@ import Topbar from "../components/Layout/Topbar";
 import TabBar from "../components/Layout/TabBar";
 
 import { Outlet, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTabs } from "../context/TabContext";
 
 export default function DashboardLayout() {
   const location = useLocation();
+
   const {
     tabs,
     setActiveTab,
   } = useTabs();
 
+  const [collapsed, setCollapsed] = useState(false);
+
   useEffect(() => {
-    const currentTab = tabs.find(tab => tab.path === location.pathname);
+    const currentTab = tabs.find(
+      (tab) => tab.path === location.pathname
+    );
+
     if (currentTab) {
       setActiveTab(currentTab.title);
     }
@@ -23,7 +29,7 @@ export default function DashboardLayout() {
     tabs,
     setActiveTab,
   ]);
-  
+
   return (
     <div
       style={{
@@ -32,55 +38,49 @@ export default function DashboardLayout() {
         background: "var(--bg-main)",
       }}
     >
-      {/* Fixed Sidebar */}
+
+      {/* Sidebar */}
 
       <div
         style={{
           position: "fixed",
           left: 0,
           top: 0,
-          // width: collapsed ? "74px" : "240px",
           height: "100vh",
-          zIndex: 1000,
+          zIndex: "var(--z-sidebar)",
         }}
       >
-        <Sidebar/>
+        <Sidebar
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+        />
       </div>
 
       {/* Main Content */}
 
       <div
         style={{
-          marginLeft: "245px",
+          marginLeft: collapsed ? "74px" : "245px",
           flex: 1,
           display: "flex",
           flexDirection: "column",
           minHeight: "100vh",
+          transition: "margin-left .25s ease",
         }}
       >
-        {/* Sticky Topbar */}
+
+        {/* Topbar + Tabbar */}
 
         <div
           style={{
             position: "sticky",
             top: 0,
-            zIndex: 900,
+            zIndex: "var(--z-topbar)",
           }}
         >
           <Topbar />
-          <TabBar/>
+          <TabBar />
         </div>
-
-        {/* <div
-          style={{
-            position: "sticky",
-            top: "64px",
-            zIndex: 800,
-            background: "var(--bg-main)"
-          }}
-        >
-          
-        </div> */}
 
         {/* Page Content */}
 
@@ -89,11 +89,12 @@ export default function DashboardLayout() {
             flex: 1,
             padding: "32px",
             overflowY: "auto",
-            height: "calc(100vh - 64px - 42px)"
+            height: "calc(100vh - 64px - 42px)",
           }}
         >
-          <Outlet/>
+          <Outlet />
         </main>
+
       </div>
     </div>
   );

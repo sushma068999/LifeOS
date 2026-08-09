@@ -1,4 +1,7 @@
-export default function Container({ children, style = {} }) {
+export default function Container({
+  children,
+  style = {} 
+}) {
   return (
     <div
       style={{

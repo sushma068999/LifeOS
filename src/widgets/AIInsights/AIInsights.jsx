@@ -1,106 +1,136 @@
 import { cardStyle } from "../../styles/cardStyle";
+import { useDashboard } from "../../context/DashboardContext";
+import { widgetDefaults } from "../../config/widgetDefaults";
 
 export default function AIInsights() {
-  const insights = [
-    {
-        title: "Deep Work",
-        value: 64,
-        color: "var(--accent)",
-    },
-    {
-        title: "Goal Alignment",
-        value: 78,
-        color: "var(--success)",
-    },
-    {
-        title: "Consistency",
-        value: 82,
-        color: "var(--warning)",
-    },
-    {
-        title: "Balance",
-        value: 71,
-        color: "var(--primary)",
-    },
-  ];
+    const { widgetSettings } = useDashboard();
 
-  return (
-    <div
-        style={{
-            ...cardStyle,
-            padding: "24px",
-        }}
-    >
-        <h2 style={{ margin: 0 }}>
-            AI Insights
-        </h2>
+    const settings = {
+        ...widgetDefaults.aiInsights,
+        ...(widgetSettings.aiInsights ?? {}),
+    };
 
-        <p
-            style={{
-            marginTop: "6px",
-            color: "var(--text-secondary)",
-            }}
-        >
-            Last 30 days • Updated just now
-        </p>
+    const insights = [
+        {
+            title: "Deep Work",
+            value: 64,
+        },
+        {
+            title: "Goal Alignment",
+            value: 78,
+        },
+        {
+            title: "Consistency",
+            value: 82,
+        },
+        {
+            title: "Balance",
+            value: 71,
+        },
+    ];
 
+    return (
         <div
             style={{
-            marginTop: "24px",
+                ...cardStyle,
+                padding: "24px",
+                height: "100%",
+                minHeight: "260px",
+                boxSizing: "border-box",
+                display: "flex",
+                flexDirection: "column",
             }}
         >
-        {insights.map((item) => (
-            <div
-                key={item.title}
+            <h2 style={{ margin: 0 }}>
+                AI Insights
+            </h2>
+
+            <p
                 style={{
-                marginBottom: "18px",
+                    marginTop: "6px",
+                    color: "var(--text-secondary)",
                 }}
             >
-                <div
-                style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "6px",
-                }}
-                >
-                <span>{item.title}</span>
-                <strong>{item.value}%</strong>
-                </div>
+                Last 30 days • Updated just now
+            </p>
 
-                <div
-                style={{
-                    height: "8px",
-                    background: "var(--border-light)",
-                    borderRadius: "999px",
-                    overflow: "hidden",
-                }}
-                >
+            {settings.showProgress && (
                 <div
                     style={{
-                    width: `${item.value}%`,
-                    height: "100%",
-                    background: item.color,
-                    borderRadius: "999px",
+                        marginTop: "24px",
                     }}
-                />
-                </div>
-            </div>
-        ))}
-        </div>
+                >
+                    {insights.map((item) => (
+                        <div
+                            key={item.title}
+                            style={{
+                                marginBottom: "18px",
+                            }}
+                        >
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent:
+                                        "space-between",
+                                    marginBottom: "6px",
+                                }}
+                            >
+                                <span>{item.title}</span>
 
-        <div
-        style={{
-            marginTop: "24px",
-            padding: "16px",
-            borderRadius: "16px",
-            background: "var(--primary-soft)",
-            border: "1px solid var(--primary-border)",
-            color: "var(--primary-dark)",
-            fontWeight: 500,
-        }}
-        >
-            💡 You were 18% more productive during Afternoon Blocks this week.
+                                {settings.showScore && (
+                                    <strong>
+                                        {item.value}%
+                                    </strong>
+                                )}
+                            </div>
+
+                            <div
+                                style={{
+                                    height: "6px",
+                                    background:
+                                        "var(--border)",
+                                    borderRadius: "999px",
+                                    overflow: "hidden",
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        width:
+                                            `${item.value}%`,
+                                        height: "100%",
+                                        background:
+                                            "var(--primary)",
+                                        borderRadius:
+                                            "999px",
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            {settings.showRecommendation && (
+                <div
+                    style={{
+                        marginTop: settings.showProgress
+                            ? "6px"
+                            : "24px",
+                        padding: "16px",
+                        borderRadius: "16px",
+                        background:
+                            "var(--primary-soft)",
+                        border:
+                            "1px solid var(--primary-border)",
+                        color:
+                            "var(--primary-dark)",
+                        fontWeight: 500,
+                    }}
+                >
+                    💡 You were 18% more productive during
+                    Afternoon Blocks this week.
+                </div>
+            )}
         </div>
-    </div>
-  );
+    );
 }

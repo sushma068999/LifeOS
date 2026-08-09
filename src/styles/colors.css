@@ -1,7 +1,3 @@
-/* =======================================================
-   LifeOS Design Tokens — Colors
-   ======================================================= */
-
 :root{
 
   /* Backgrounds */
@@ -19,6 +15,10 @@
   --primary-soft:#EEF6F2;
   --primary-hover:#DCEBE4;
   --primary-border:#8FB8A8;
+
+  --sage-dark: #344e43;
+  --sage-medium: #58947d;
+  --sage-light: #8cd3b0;
 
 
   /* Accent (Soft Blue) */

@@ -2,13 +2,22 @@ import { useUser } from "../../context/UserContext";
 import QuickStats from "../QuickStats/QuickStats";
 import { cardStyle } from "../../styles/cardStyle";
 
+import { useDashboard } from "../../context/DashboardContext";
+import { widgetDefaults } from "../../config/widgetDefaults";
+
 import { Sunrise, Sun, Sunset, Moon, CheckSquare, CalendarDays, Heart, Target } from "lucide-react";
-import { getCurrentBlock } from "../../utils/blockUtils";
 
 export default function GreetingCard() {
     const { user } = useUser();
+
+    const { widgetSettings } = useDashboard();
+
+    const settings = {
+        ...widgetDefaults.greeting,
+        ...(widgetSettings.greeting ?? {}),
+    };
+
     const now = new Date();
-    const currentBlock = getCurrentBlock(now);
     const hour = now.getHours();
 
     let blockName = " ";
@@ -71,15 +80,34 @@ export default function GreetingCard() {
                     fontWeight: 500,
                 }}
             >
-                <BlockIcon size={18} />
+                {settings.showBlock && (
+                    <BlockIcon size={18} />
+                )}
 
                 <span>
-                    {blockName} • {currentTime}
+                    {settings.showBlock && blockName}
+
+                    {settings.showBlock &&
+                        settings.showTime &&
+                        " • "}
+
+                    {settings.showTime && currentTime}
                 </span>
             </div>
             
             {/* Greeting */}
-            <h1>{greeting}, <span style={{color: "var(--primary)"}}>{user.name}</span></h1>
+            {settings.showGreeting && (
+                <h1>
+                    {greeting},{" "}
+                    <span
+                        style={{
+                            color:"var(--primary)",
+                        }}
+                    >
+                        {user.name}
+                    </span>
+                </h1>
+            )}
 
             <p>
             Here's what's happening today.
@@ -87,30 +115,41 @@ export default function GreetingCard() {
 
             {/* Stats */}
             <div style={statsContainer}>
-                <QuickStats 
-                    title="Tasks" 
-                    value="0"
-                    icon={CheckSquare}
-                    path= "/tasks" 
-                />
-                <QuickStats 
-                    title="Habit Tracker" 
-                    value="0"
-                    icon={Heart}
-                    path= "/habits" 
-                />
-                <QuickStats 
-                    title="Calendar" 
-                    value="0"
-                    icon={CalendarDays}
-                    path= "/calendar" 
-                />
-                <QuickStats 
-                    title="Goals" 
-                    value="0"
-                    icon={Target}
-                    path= "/goals" 
-                />
+                {settings.showTasks && (
+                    <QuickStats
+                        title="Tasks"
+                        value="0"
+                        icon={CheckSquare}
+                        path="/tasks"
+                    />
+                )}
+
+                {settings.showHabits && (
+                    <QuickStats
+                        title="Habit Tracker"
+                        value="0"
+                        icon={Heart}
+                        path="/habits"
+                    />
+                )}
+
+                {settings.showCalendar && (
+                    <QuickStats
+                        title="Calendar"
+                        value="0"
+                        icon={CalendarDays}
+                        path="/calendar"
+                    />
+                )}
+
+                {settings.showGoals && (
+                    <QuickStats
+                        title="Goals"
+                        value="0"
+                        icon={Target}
+                        path="/goals"
+                    />
+                )}
             </div>
         </div>
     );

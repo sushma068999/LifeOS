@@ -15,6 +15,7 @@ import Budget from "./pages/Budget"
 import Calendar from "./pages/Calendar";
 import Career from "./pages/Career";
 import Curriculum from "./pages/Curriculum";
+import Expenses from "./pages/Expenses";
 import Finance from "./pages/Finance";
 import Flashcards from './pages/Flashcards'
 import Goals from "./pages/Goals";
@@ -88,6 +89,12 @@ export function App() {
           <Route
             path='/dashboard'
             element={<Dashboard />
+          }
+          />
+
+          <Route
+            path='/expenses'
+            element={<Expenses />
           }
           />
 

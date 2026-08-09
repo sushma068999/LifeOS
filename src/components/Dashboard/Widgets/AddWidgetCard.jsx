@@ -1,33 +1,33 @@
 import { Plus } from "lucide-react";
 import { cardStyle } from "../../../styles/cardStyle";
+import { useState } from "react";
+import WidgetMarketplace from "../WidgetMarketplace/WidgetMarketplace";
 
 export default function AddWidgetCard() {
+    const [open, setOpen] = useState(false);
     return (
+        <>
         <button
+        onClick={() => setOpen(true)}
         style={{
             ...cardStyle,
-
             width: "100%",
-            minHeight: "220px",
-
-            borderStyle: "dashed",
-
+            minHeight: "170px",
+            border: "2px dashed var(--border)",
             cursor: "pointer",
-
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: "space-between",
+            padding: "24px",
+            boxSizing: "border-box",
             alignItems: "center",
-
-            gap: "16px",
-
-            background: "transparent",
-
+            gap: "10px",
+            background: "var(--bg-surface)",
             transition: ".2s",
         }}
         >
         <Plus
-            size={38}
+            size={34}
             color="var(--primary)"
         />
 
@@ -46,8 +46,15 @@ export default function AddWidgetCard() {
             color: "var(--text-secondary)",
             }}
         >
-            Customize your dashboard
+            Browse available widgets and personalize your workspace.
         </p>
         </button>
+        
+        {open && (
+            <WidgetMarketplace
+                onClose={() => setOpen(false)}
+            />
+        )}
+        </>
     );
 }

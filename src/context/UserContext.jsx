@@ -1,24 +1,56 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import { buildDashboard } from "../config/buildDashboard";
 
 const UserContext = createContext();
 export function UserProvider({ children }) {
 
-    const [user, setUser] = useState({
-        name: "User",
-        profile: "student",
+    const [user, setUser] = useState(() => {
+        const savedUser = localStorage.getItem("lifeos-user");
+
+        return savedUser
+        ? (() => {
+            const parsed =
+                JSON.parse(savedUser);
+
+            return {
+                name:
+                    parsed.name ?? "User",
+                profile:
+                    parsed.profile ?? "student",
+                modules:
+                    parsed.modules ?? [],
+                dashboard:
+                    parsed.dashboard ??
+                    buildDashboard(parsed),
+                plan:
+                    parsed.plan ?? "free",
+            };
+        })()
+        : {
+            name: "User",
+            profile: "student",
+            modules: [],
+            dashboard: [],
+            plan: "free",
+        };
     });
 
-
-  return (
-    <UserContext.Provider
-        value={{
-            user,
-            setUser,
-        }}
-    >
-        {children}
-    </UserContext.Provider>
-  );
+    useEffect(() => {
+        localStorage.setItem(
+            "lifeos-user",
+            JSON.stringify(user)
+        );
+    }, [user]);
+    return (
+        <UserContext.Provider
+            value={{
+                user,
+                setUser,
+            }}
+        >
+            {children}
+        </UserContext.Provider>
+    );
 }
 
 
