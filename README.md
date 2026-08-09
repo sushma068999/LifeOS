@@ -98,6 +98,7 @@ Instead of managing 8 apps & 8 passwords, get everything under 1 app & 1 passwor
   - Cloud Sync
 - Customization
   - Dynamically changing themes based on time of the day
+  - Living Companion System (Tree/Planet/Pet) that evolves over time based on user's overall activity in LifeOS.
 - Collaboration
   - Shared Workspaces
 - Business
@@ -136,7 +137,16 @@ LifeOS follows a calm, distraction-free interface inspired by modern productivit
 - Dynamically Changing Themes based on the time of day
 
 ---
+## 🏗️ Architecture
 
+LifeOS is built around reusable configuration-driven components.
+
+- Sidebar generated from profile configuration
+- Dashboard generated through widget registry
+- Context API for global state
+- Modular pages for each workspace
+
+---
 ## 📂 Project Structure
 
 ```text
