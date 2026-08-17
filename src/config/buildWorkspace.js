@@ -15,11 +15,11 @@ export function buildWorkspace(user) {
 
     sidebar.forEach((item) => {
         if (item.path) {
-        existingPaths.add(item.path);
+            existingPaths.add(item.path);
         }
 
         item.children?.forEach((child) => {
-        existingPaths.add(child.path);
+            existingPaths.add(child.path);
         });
     });
 
@@ -33,36 +33,69 @@ export function buildWorkspace(user) {
             module.sidebar.other ??
             [];
 
+        const defaults =
+            module.defaults?.[user.profile] ?? [];
+
+        const selectedOptions =
+            user.modulesSettings?.[moduleId] ??
+            defaults;
+
         sidebarItems.forEach((item) => {
-        if (item.path) {
-            if (!existingPaths.has(item.path)) {
-            sidebar.push(item);
-            existingPaths.add(item.path);
+
+            if (item.path) {
+                if (
+                    item.option &&
+                    !selectedOptions.includes(item.option)
+                ) {
+                    return;
+                }
+
+                if (!existingPaths.has(item.path)) {
+                    sidebar.push(item);
+                    existingPaths.add(item.path);
+                }
+
+                return;
             }
-        }
 
-        else if (item.children) {
-            const newChildren = item.children.filter(
-            (child) => !existingPaths.has(child.path)
-            );
+            if (item.children) {
+                const newChildren = item.children.filter(
+                    (child) => {
+                        if (
+                            child.option &&
+                            !selectedOptions.includes(
+                                child.option
+                            )
+                        ) {
+                            return false;
+                        }
 
-            if (newChildren.length > 0) {
-            sidebar.push({
-                ...item,
-                children: newChildren,
-            });
+                        return !existingPaths.has(
+                            child.path
+                        );
+                    }
+                );
 
-            newChildren.forEach((child) =>
-                existingPaths.add(child.path)
-            );
+                if (newChildren.length > 0) {
+                    sidebar.push({
+                        ...item,
+                        children: newChildren,
+                    });
+
+                    newChildren.forEach((child) =>
+                        existingPaths.add(
+                            child.path
+                        )
+                    );
+                }
             }
-        }
         });
     });
 
     return {
         sidebar,
         modules: user.modules,
+        modulesSettings: user.modulesSettings ?? {},
         profile: user.profile,
     };
 }

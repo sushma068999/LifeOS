@@ -1,6 +1,5 @@
 import {
     Users,
-    Heart,
     CalendarDays,
 } from "lucide-react";
 
@@ -8,6 +7,21 @@ export const familyModule = {
     id: "family",
     title: "Family",
     icon: Users,
+
+    options: {
+        sharedCalendar: {
+            title: "Shared Calendar",
+        },
+    },
+
+    defaults: {
+        student: ["sharedCalendar"],
+        professional: ["sharedCalendar"],
+        creator: ["sharedCalendar"],
+        hobbyist: ["sharedCalendar"],
+        other: ["sharedCalendar"],
+    },
+
     sidebar: {
         student: [
             {
@@ -18,6 +32,7 @@ export const familyModule = {
                         title: "Shared Calendar",
                         icon: CalendarDays,
                         path: "/family-calendar",
+                        option: "sharedCalendar",
                     },
                 ],
             },
@@ -32,6 +47,7 @@ export const familyModule = {
                         title: "Shared Calendar",
                         icon: CalendarDays,
                         path: "/family-calendar",
+                        option: "sharedCalendar",
                     },
                 ],
             },
@@ -46,6 +62,7 @@ export const familyModule = {
                         title: "Shared Calendar",
                         icon: CalendarDays,
                         path: "/family-calendar",
+                        option: "sharedCalendar",
                     },
                 ],
             },
@@ -60,6 +77,7 @@ export const familyModule = {
                         title: "Shared Calendar",
                         icon: CalendarDays,
                         path: "/family-calendar",
+                        option: "sharedCalendar",
                     },
                 ],
             },
@@ -74,6 +92,7 @@ export const familyModule = {
                         title: "Shared Calendar",
                         icon: CalendarDays,
                         path: "/family-calendar",
+                        option: "sharedCalendar",
                     },
                 ],
             },

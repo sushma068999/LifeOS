@@ -5,17 +5,36 @@ export const habitsModule = {
     title: "Habits",
     icon: Target,
 
+    options: {
+        habitTracker: {
+            title: "Habit Tracker",
+        },
+        goals: {
+            title: "Goals",
+        },
+    },
+
+    defaults: {
+        student: ["habitTracker", "goals"],
+        professional: ["habitTracker", "goals"],
+        creator: ["habitTracker", "goals"],
+        hobbyist: ["habitTracker", "goals"],
+        other: ["habitTracker"],
+    },
+
     sidebar: {
         student: [
             {
                 title: "Habit Tracker",
                 icon: Target,
                 path: "/habits",
+                option: "habitTracker",
             },
             {
                 title: "Goals",
                 icon: Trophy,
                 path: "/goals",
+                option: "goals",
             },
         ],
 
@@ -24,11 +43,13 @@ export const habitsModule = {
                 title: "Habit Tracker",
                 icon: Target,
                 path: "/habits",
+                option: "habitTracker",
             },
             {
                 title: "Goals",
                 icon: Trophy,
                 path: "/goals",
+                option: "goals",
             },
         ],
 
@@ -37,11 +58,13 @@ export const habitsModule = {
                 title: "Habit Tracker",
                 icon: Target,
                 path: "/habits",
+                option: "habitTracker",
             },
             {
                 title: "Goals",
                 icon: Trophy,
                 path: "/goals",
+                option: "goals",
             },
         ],
 
@@ -50,11 +73,13 @@ export const habitsModule = {
                 title: "Habit Tracker",
                 icon: Target,
                 path: "/habits",
+                option: "habitTracker",
             },
             {
                 title: "Goals",
                 icon: Trophy,
                 path: "/goals",
+                option: "goals",
             },
         ],
 
@@ -63,6 +88,7 @@ export const habitsModule = {
                 title: "Habit Tracker",
                 icon: Target,
                 path: "/habits",
+                option: "habitTracker",
             },
         ],
     },

@@ -19,7 +19,7 @@ const plans = [
     },
 ];
 
-export default function Step4Plan({
+export default function Step5Plan({
     user,
     setUser,
 }){

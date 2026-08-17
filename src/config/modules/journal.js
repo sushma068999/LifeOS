@@ -2,10 +2,22 @@ import { BookHeart } from "lucide-react";
 
 export const journalModule = {
     id: "journal",
-
     title: "Journal",
-
     icon: BookHeart,
+
+    options: {
+        journal: {
+            title: "Journal",
+        },
+    },
+
+    defaults: {
+        student: ["journal"],
+        professional: ["journal"],
+        creator: ["journal"],
+        hobbyist: ["journal"],
+        other: ["journal"],
+    },
 
     sidebar: {
         student: [
@@ -13,6 +25,7 @@ export const journalModule = {
                 title: "Journal",
                 icon: BookHeart,
                 path: "/journal",
+                option: "journal",
             },
         ],
 
@@ -21,6 +34,7 @@ export const journalModule = {
                 title: "Journal",
                 icon: BookHeart,
                 path: "/journal",
+                option: "journal",
             },
         ],
 
@@ -29,6 +43,7 @@ export const journalModule = {
                 title: "Journal",
                 icon: BookHeart,
                 path: "/journal",
+                option: "journal",
             },
         ],
 
@@ -37,6 +52,7 @@ export const journalModule = {
                 title: "Journal",
                 icon: BookHeart,
                 path: "/journal",
+                option: "journal",
             },
         ],
 
@@ -45,6 +61,7 @@ export const journalModule = {
                 title: "Journal",
                 icon: BookHeart,
                 path: "/journal",
+                option: "journal",
             },
         ],
     },
