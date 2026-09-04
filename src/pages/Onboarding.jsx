@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { cardStyle } from "../styles/cardStyle";
+import { buildDefaultCalendars } from "../utils/calendarData";
 
 import StepIndicator from "../components/Auth/OnboardingPP/StepIndicator";
 import Step1Name from "../components/Auth/OnboardingPP/Step1Name";
@@ -148,9 +149,15 @@ export default function Onboarding({
                                 const dashboard =
                                     buildDashboard(user);
 
+                                const calendars =
+                                    buildDefaultCalendars(
+                                        user.profile
+                                    );
+
                                 onFinish({
                                     ...user,
                                     dashboard,
+                                    calendars,
                                 });
                             }
                         }}

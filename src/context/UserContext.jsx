@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { buildDashboard } from "../config/buildDashboard";
+import { buildDefaultCalendars } from "../utils/calendarData";
 
 const UserContext = createContext();
 export function UserProvider({ children }) {
@@ -15,15 +16,25 @@ export function UserProvider({ children }) {
             return {
                 name:
                     parsed.name ?? "User",
+
                 profile:
                     parsed.profile ?? "student",
+
                 modules:
                     parsed.modules ?? [],
+
                 dashboard:
                     parsed.dashboard ??
                     buildDashboard(parsed),
+
                 plan:
                     parsed.plan ?? "free",
+
+                calendars:
+                    parsed.calendars ??
+                    buildDefaultCalendars(
+                        parsed.profile ?? "student"
+                    ),
             };
         })()
         : {
@@ -32,6 +43,7 @@ export function UserProvider({ children }) {
             modules: [],
             dashboard: [],
             plan: "free",
+            calendars: buildDefaultCalendars("student"),
         };
     });
 
@@ -52,7 +64,6 @@ export function UserProvider({ children }) {
         </UserContext.Provider>
     );
 }
-
 
 export function useUser() {
     return useContext(UserContext);

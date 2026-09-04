@@ -57,6 +57,30 @@
   --chart-gold:#D8B26E;
   --chart-coral:#E99A7A;
 
+    /* Calendar */
+
+  --calendar-study:#9B91B8;
+  --calendar-college:#7FA6A0;
+  --calendar-assignments:#C4A36A;
+  --calendar-practicals:#7FA99A;
+  --calendar-personal:#B58FA3;
+
+  --calendar-work:#7F9CAF;
+  --calendar-meetings:#9B91B8;
+  --calendar-projects:#7FA99A;
+
+  --calendar-content:#B58FA3;
+  --calendar-ideas:#C4A36A;
+  --calendar-production:#9B91B8;
+  --calendar-publishing:#7F9CAF;
+
+  --calendar-creative:#B58FA3;
+  --calendar-learning:#9B91B8;
+  --calendar-activities:#7FA99A;
+
+  --calendar-important:#C58F6B;
+  --calendar-general:#8E9A9A;
+
   /* Shadows */
 
   --shadow-sm:0 2px 8px rgba(31,41,51,.05);
