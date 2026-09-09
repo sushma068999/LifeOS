@@ -19,6 +19,7 @@ export default function MonthView({
     events = [],
     calendars = [],
     onDateClick,
+    onEventClick,
 }) {
     const calendarDays =
         getCalendarDays(currentDate);
@@ -29,7 +30,8 @@ export default function MonthView({
         <section
             style={{
                 width: "100%",
-                background: "var(--bg-surface)",
+                background:
+                    "var(--bg-surface)",
                 border:
                     "1px solid var(--border)",
                 borderRadius:
@@ -40,7 +42,6 @@ export default function MonthView({
             }}
         >
             {/* Weekday header */}
-
             <div
                 style={{
                     display: "grid",
@@ -58,7 +59,8 @@ export default function MonthView({
                         style={{
                             padding:
                                 "var(--space-3) var(--space-2)",
-                            textAlign: "center",
+                            textAlign:
+                                "center",
                             color:
                                 "var(--text-secondary)",
                             fontSize: "12px",
@@ -75,7 +77,6 @@ export default function MonthView({
             </div>
 
             {/* Calendar grid */}
-
             <div
                 style={{
                     display: "grid",
@@ -95,24 +96,24 @@ export default function MonthView({
                             );
 
                         const dayEvents =
-                            events.filter((event) =>
-                                isSameDay(
-                                    new Date(event.date),
-                                    date
-                                )
+                            events.filter(
+                                (event) =>
+                                    isSameDay(
+                                        new Date(
+                                            event.date
+                                        ),
+                                        date
+                                    )
                             );
 
                         return (
-                            <button
+                            <div
                                 key={date.toISOString()}
-                                onClick={() =>
-                                    onDateClick(date)
-                                }
                                 style={{
-                                    minHeight: "125px",
+                                    minHeight:
+                                        "125px",
                                     padding:
                                         "var(--space-3)",
-                                    border: "none",
                                     borderRight:
                                         "1px solid var(--border-light)",
                                     borderBottom:
@@ -125,22 +126,27 @@ export default function MonthView({
                                         isCurrentMonth
                                             ? 1
                                             : 0.45,
-                                    transition:
-                                        "var(--transition-fast)",
                                     boxSizing:
                                         "border-box",
-                                    cursor: "pointer",
-                                    textAlign: "left",
-                                    fontFamily:
-                                        "inherit",
+                                    cursor:
+                                        "pointer",
                                 }}
-                                onMouseEnter={(e) => {
+                                onClick={() =>
+                                    onDateClick(
+                                        date
+                                    )
+                                }
+                                onMouseEnter={(
+                                    e
+                                ) => {
                                     e.currentTarget.style.background =
                                         todayCell
                                             ? "var(--primary-soft)"
                                             : "var(--bg-hover)";
                                 }}
-                                onMouseLeave={(e) => {
+                                onMouseLeave={(
+                                    e
+                                ) => {
                                     e.currentTarget.style.background =
                                         todayCell
                                             ? "var(--primary-soft)"
@@ -148,7 +154,6 @@ export default function MonthView({
                                 }}
                             >
                                 {/* Date number */}
-
                                 <div
                                     style={{
                                         display:
@@ -159,8 +164,10 @@ export default function MonthView({
                                 >
                                     <span
                                         style={{
-                                            width: "30px",
-                                            height: "30px",
+                                            width:
+                                                "30px",
+                                            height:
+                                                "30px",
                                             display:
                                                 "flex",
                                             alignItems:
@@ -194,7 +201,6 @@ export default function MonthView({
                                 </div>
 
                                 {/* Events */}
-
                                 <div
                                     style={{
                                         display:
@@ -206,56 +212,93 @@ export default function MonthView({
                                             "8px",
                                     }}
                                 >
-                                    {dayEvents.map((event) => {
-                                        const eventCalendar =
-                                            calendars.find(
-                                                (calendar) =>
-                                                    calendar.id ===
-                                                    event.calendarId
+                                    {dayEvents.map(
+                                        (event) => {
+                                            const calendar =
+                                                calendars.find(
+                                                    (
+                                                        calendar
+                                                    ) =>
+                                                        calendar.id ===
+                                                        event.calendarId
+                                                );
+
+                                            const color =
+                                                calendar?.color ??
+                                                "var(--primary)";
+
+                                            return (
+                                                <button
+                                                    key={
+                                                        event.id
+                                                    }
+                                                    onClick={(
+                                                        e
+                                                    ) => {
+                                                        e.stopPropagation();
+
+                                                        onEventClick(
+                                                            event
+                                                        );
+                                                    }}
+                                                    style={{
+                                                        width: "100%",
+                                                        padding:
+                                                            "6px 8px",
+                                                        border:
+                                                            "none",
+                                                        borderLeft:
+                                                            `3px solid ${color}`,
+                                                        borderRadius:
+                                                            "7px",
+                                                        background:
+                                                            `color-mix(in srgb, ${color} 14%, var(--bg-surface))`,
+                                                        color:
+                                                            "var(--text-primary)",
+                                                        fontSize:
+                                                            "12px",
+                                                        fontWeight:
+                                                            600,
+                                                        overflow:
+                                                            "hidden",
+                                                        textOverflow:
+                                                            "ellipsis",
+                                                        whiteSpace:
+                                                            "nowrap",
+                                                        textAlign:
+                                                            "left",
+                                                        fontFamily:
+                                                            "inherit",
+                                                        cursor:
+                                                            "pointer",
+                                                    }}
+                                                >
+                                                    {event.startTime && (
+                                                        <span
+                                                            style={{
+                                                                marginRight:
+                                                                    "5px",
+                                                                color:
+                                                                    "var(--text-secondary)",
+                                                                fontSize:
+                                                                    "10px",
+                                                            }}
+                                                        >
+                                                            {
+                                                                event.startTime
+                                                            }
+                                                        </span>
+                                                    )}
+
+                                                    {
+                                                        event.title
+                                                    }
+                                                </button>
                                             );
-
-                                        const calendarColor =
-                                            eventCalendar?.color ??
-                                            "var(--primary)";
-
-                                        return (
-                                            <div
-                                                key={event.id}
-                                                style={{
-                                                    padding: "6px 8px",
-                                                    borderRadius: "7px",
-
-                                                    background:
-                                                        `color-mix(
-                                                            in srgb,
-                                                            ${calendarColor} 14%,
-                                                            var(--bg-surface)
-                                                        )`,
-
-                                                    borderLeft:
-                                                        `3px solid ${calendarColor}`,
-
-                                                    color:
-                                                        "var(--text-primary)",
-
-                                                    fontSize: "12px",
-
-                                                    fontWeight: 600,
-
-                                                    overflow: "hidden",
-
-                                                    textOverflow:
-                                                        "ellipsis",
-
-                                                    whiteSpace: "nowrap",
-                                                }}
-                                            >
-                                                {event.title}
-                                            </div>
-                                        );
-                                    })}
+                                        }
+                                    )}
                                 </div>
-                            </button>
+                            </div>
                         );
                     }
                 )}

@@ -128,3 +128,108 @@ export function goToToday() {
         1
     );
 }
+
+export function getWeekDays(date) {
+    const current = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
+    );
+
+    // Convert JavaScript Sunday = 0
+    // into Monday = 0
+    const day =
+        (current.getDay() + 6) % 7;
+
+    const monday = new Date(current);
+
+    monday.setDate(
+        current.getDate() - day
+    );
+
+    const weekDays = [];
+
+    for (let i = 0; i < 7; i++) {
+        const weekDay =
+            new Date(monday);
+
+        weekDay.setDate(
+            monday.getDate() + i
+        );
+
+        weekDays.push(weekDay);
+    }
+
+    return weekDays;
+}
+
+
+export function goToPreviousWeek(date) {
+    const previousWeek =
+        new Date(date);
+
+    previousWeek.setDate(
+        date.getDate() - 7
+    );
+
+    return previousWeek;
+}
+
+
+export function goToNextWeek(date) {
+    const nextWeek =
+        new Date(date);
+
+    nextWeek.setDate(
+        date.getDate() + 7
+    );
+
+    return nextWeek;
+}
+
+
+export function formatWeekRange(date) {
+    const weekDays =
+        getWeekDays(date);
+
+    const firstDay =
+        weekDays[0];
+
+    const lastDay =
+        weekDays[6];
+
+    const sameMonth =
+        firstDay.getMonth() ===
+        lastDay.getMonth();
+
+    const sameYear =
+        firstDay.getFullYear() ===
+        lastDay.getFullYear();
+
+    if (sameMonth && sameYear) {
+        return `${firstDay.toLocaleDateString(
+            undefined,
+            {
+                month: "long",
+                day: "numeric",
+            }
+        )} – ${lastDay.getDate()}, ${
+            lastDay.getFullYear()
+        }`;
+    }
+
+    return `${firstDay.toLocaleDateString(
+        undefined,
+        {
+            month: "short",
+            day: "numeric",
+        }
+    )} – ${lastDay.toLocaleDateString(
+        undefined,
+        {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+        }
+    )}`;
+}

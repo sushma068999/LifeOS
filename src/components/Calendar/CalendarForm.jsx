@@ -3,45 +3,106 @@ import { useState } from "react";
 export default function CalendarForm({
     date,
     calendars = [],
+    event = null,
     onAdd,
+    onUpdate,
+    onDelete,
     onClose,
 }) {
-    const [title, setTitle] = useState("");
-    const [type, setType] = useState("event");
+    const isEditing = Boolean(event);
+
+    const [title, setTitle] = useState(
+        event?.title ?? ""
+    );
+
+    const [type, setType] = useState(
+        event?.type ?? "event"
+    );
 
     const [calendarId, setCalendarId] =
         useState(
-            calendars[0]?.id ?? ""
+            event?.calendarId ??
+            calendars[0]?.id ??
+            ""
         );
 
     const [startTime, setStartTime] =
-        useState("");
+        useState(
+            event?.startTime ?? ""
+        );
 
     const [endTime, setEndTime] =
+        useState(
+            event?.endTime ?? ""
+        );
+
+    const [timeError, setTimeError] =
         useState("");
 
     function handleSubmit(e) {
         e.preventDefault();
 
-        if (!title.trim()) return;
+        if (!title.trim()) {
+            return;
+        }
 
-        onAdd({
-            id: crypto.randomUUID(),
+        if (
+            type === "event" &&
+            startTime &&
+            endTime
+        ) {
+            if (startTime >= endTime) {
+                setTimeError(
+                    "End time must be later than start time."
+                );
+                return;
+            }
+        }
+
+        setTimeError("");
+
+        const updatedEvent = {
+            ...(event ?? {}),
+
+            id:
+                event?.id ??
+                crypto.randomUUID(),
+
             title: title.trim(),
-            date: new Date(date),
+
+            date: new Date(
+                date.getFullYear(),
+                date.getMonth(),
+                date.getDate()
+            ),
+
             type,
+
             calendarId,
+
             startTime,
+
             endTime:
                 type === "event"
                     ? endTime
                     : "",
-        });
+        };
 
-        setTitle("");
-        setStartTime("");
-        setEndTime("");
+        if (isEditing) {
+            onUpdate(updatedEvent);
+        } else {
+            onAdd(updatedEvent);
+        }
 
+        onClose();
+    }
+
+    function handleDelete() {
+        if (!event) {
+            return;
+        }
+
+        onDelete(event.id);
         onClose();
     }
 
@@ -86,7 +147,9 @@ export default function CalendarForm({
                         fontSize: "22px",
                     }}
                 >
-                    Add to your day
+                    {isEditing
+                        ? "Edit your plan"
+                        : "Add to your day"}
                 </h2>
 
                 <p
@@ -113,17 +176,13 @@ export default function CalendarForm({
                     autoFocus
                     value={title}
                     onChange={(e) =>
-                        setTitle(
-                            e.target.value
-                        )
+                        setTitle(e.target.value)
                     }
                     placeholder="What are you planning?"
                     style={{
                         width: "100%",
-                        boxSizing:
-                            "border-box",
-                        padding:
-                            "12px 14px",
+                        boxSizing: "border-box",
+                        padding: "12px 14px",
                         border:
                             "1px solid var(--border)",
                         borderRadius: "12px",
@@ -141,15 +200,13 @@ export default function CalendarForm({
 
                 <select
                     value={type}
-                    onChange={(e) =>
-                        setType(
-                            e.target.value
-                        )
-                    }
+                    onChange={(e) => {
+                        setType(e.target.value);
+                        setTimeError("");
+                    }}
                     style={{
                         width: "100%",
-                        padding:
-                            "12px 14px",
+                        padding: "12px 14px",
                         border:
                             "1px solid var(--border)",
                         borderRadius: "12px",
@@ -219,109 +276,183 @@ export default function CalendarForm({
                 <input
                     type="time"
                     value={startTime}
-                    onChange={(e) =>
+                    onChange={(e) => {
                         setStartTime(
                             e.target.value
-                        )
-                    }
+                        );
+                        setTimeError("");
+                    }}
                     style={{
                         width: "100%",
-                        boxSizing:
-                            "border-box",
-                        padding:
-                            "12px 14px",
+                        boxSizing: "border-box",
+                        padding: "12px 14px",
                         border:
-                            "1px solid var(--border)",
+                            timeError
+                                ? "1px solid var(--danger)"
+                                : "1px solid var(--border)",
                         borderRadius: "12px",
                         background:
                             "var(--bg-main)",
                         color:
                             "var(--text-primary)",
                         fontSize: "14px",
-                        marginBottom: "12px",
+                        marginBottom:
+                            timeError
+                                ? "8px"
+                                : "12px",
                     }}
                 />
 
-                {/* End time only for events */}
+                {/* End time */}
 
                 {type === "event" && (
-                    <input
-                        type="time"
-                        value={endTime}
-                        onChange={(e) =>
-                            setEndTime(
-                                e.target.value
-                            )
-                        }
-                        style={{
-                            width: "100%",
-                            boxSizing:
-                                "border-box",
-                            padding:
-                                "12px 14px",
-                            border:
-                                "1px solid var(--border)",
-                            borderRadius:
-                                "12px",
-                            background:
-                                "var(--bg-main)",
-                            color:
-                                "var(--text-primary)",
-                            fontSize: "14px",
-                            marginBottom:
-                                "20px",
-                        }}
-                    />
+                    <>
+                        <input
+                            type="time"
+                            value={endTime}
+                            onChange={(e) => {
+                                setEndTime(
+                                    e.target.value
+                                );
+                                setTimeError("");
+                            }}
+                            style={{
+                                width: "100%",
+                                boxSizing:
+                                    "border-box",
+                                padding:
+                                    "12px 14px",
+                                border:
+                                    timeError
+                                        ? "1px solid var(--danger)"
+                                        : "1px solid var(--border)",
+                                borderRadius:
+                                    "12px",
+                                background:
+                                    "var(--bg-main)",
+                                color:
+                                    "var(--text-primary)",
+                                fontSize: "14px",
+                                marginBottom:
+                                    timeError
+                                        ? "8px"
+                                        : "12px",
+                            }}
+                        />
+
+                        {timeError && (
+                            <div
+                                style={{
+                                    marginBottom:
+                                        "20px",
+                                    padding:
+                                        "9px 11px",
+                                    borderRadius:
+                                        "9px",
+                                    background:
+                                        "color-mix(in srgb, var(--danger) 10%, var(--bg-surface))",
+                                    border:
+                                        "1px solid color-mix(in srgb, var(--danger) 35%, var(--border))",
+                                    color:
+                                        "var(--danger)",
+                                    fontSize:
+                                        "12px",
+                                    fontWeight:
+                                        600,
+                                    lineHeight:
+                                        1.4,
+                                }}
+                            >
+                                {timeError}
+                            </div>
+                        )}
+                    </>
                 )}
 
                 <div
                     style={{
                         display: "flex",
                         justifyContent:
-                            "flex-end",
+                            "space-between",
+                        alignItems: "center",
                         gap: "10px",
                     }}
                 >
-                    <button
-                        type="button"
-                        onClick={onClose}
-                        style={{
-                            padding:
-                                "10px 16px",
-                            border:
-                                "1px solid var(--border)",
-                            borderRadius:
-                                "10px",
-                            background:
-                                "transparent",
-                            color:
-                                "var(--text-secondary)",
-                            cursor:
-                                "pointer",
-                        }}
-                    >
-                        Cancel
-                    </button>
+                    {isEditing ? (
+                        <button
+                            type="button"
+                            onClick={handleDelete}
+                            style={{
+                                padding:
+                                    "10px 16px",
+                                border:
+                                    "1px solid var(--danger)",
+                                borderRadius:
+                                    "10px",
+                                background:
+                                    "transparent",
+                                color:
+                                    "var(--danger)",
+                                cursor:
+                                    "pointer",
+                                fontWeight: 600,
+                            }}
+                        >
+                            Delete
+                        </button>
+                    ) : (
+                        <div />
+                    )}
 
-                    <button
-                        type="submit"
+                    <div
                         style={{
-                            padding:
-                                "10px 18px",
-                            border: "none",
-                            borderRadius:
-                                "10px",
-                            background:
-                                "var(--primary)",
-                            color:
-                                "var(--text-white)",
-                            cursor:
-                                "pointer",
-                            fontWeight: 600,
+                            display: "flex",
+                            gap: "10px",
                         }}
                     >
-                        Add
-                    </button>
+                        <button
+                            type="button"
+                            onClick={onClose}
+                            style={{
+                                padding:
+                                    "10px 16px",
+                                border:
+                                    "1px solid var(--border)",
+                                borderRadius:
+                                    "10px",
+                                background:
+                                    "transparent",
+                                color:
+                                    "var(--text-secondary)",
+                                cursor:
+                                    "pointer",
+                            }}
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            style={{
+                                padding:
+                                    "10px 18px",
+                                border: "none",
+                                borderRadius:
+                                    "10px",
+                                background:
+                                    "var(--primary)",
+                                color:
+                                    "var(--text-white)",
+                                cursor:
+                                    "pointer",
+                                fontWeight: 600,
+                            }}
+                        >
+                            {isEditing
+                                ? "Save Changes"
+                                : "Add"}
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

@@ -4,7 +4,10 @@ import {
     CalendarDays,
 } from "lucide-react";
 
-import { formatMonthYear } from "../../utils/calendarUtils";
+import {
+    formatMonthYear,
+    formatWeekRange,
+} from "../../utils/calendarUtils";
 
 export default function CalendarHeader({
     currentDate,
@@ -25,21 +28,26 @@ export default function CalendarHeader({
         },
     ];
 
+    const isWeekView =
+        view === "week";
+
     return (
         <header
             style={{
                 display: "flex",
                 flexDirection: "column",
                 gap: "var(--space-5)",
-                marginBottom: "var(--space-5)",
+                marginBottom:
+                    "var(--space-5)",
             }}
         >
-            {/* Top section */}
             <div
                 style={{
                     display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-start",
+                    justifyContent:
+                        "space-between",
+                    alignItems:
+                        "flex-start",
                     gap: "var(--gap-md)",
                     flexWrap: "wrap",
                 }}
@@ -48,7 +56,8 @@ export default function CalendarHeader({
                     <div
                         style={{
                             display: "flex",
-                            alignItems: "center",
+                            alignItems:
+                                "center",
                             gap: "14px",
                         }}
                     >
@@ -63,7 +72,8 @@ export default function CalendarHeader({
                                 fontSize: "32px",
                                 lineHeight: 1.2,
                                 fontWeight: 700,
-                                color: "var(--text-primary)",
+                                color:
+                                    "var(--text-primary)",
                             }}
                         >
                             Calendar
@@ -73,25 +83,30 @@ export default function CalendarHeader({
                     <p
                         style={{
                             margin: 0,
-                            color: "var(--text-secondary)",
+                            color:
+                                "var(--text-secondary)",
                             fontSize: "14px",
                         }}
                     >
-                        Plan your time, see what is ahead,
-                        and keep your life in one place.
+                        Plan your time, see what is
+                        ahead, and keep your life in
+                        one place.
                     </p>
                 </div>
 
-                {/* View switcher */}
                 <div
                     style={{
                         display: "flex",
-                        alignItems: "center",
+                        alignItems:
+                            "center",
                         gap: "4px",
                         padding: "4px",
-                        borderRadius: "var(--radius-md)",
-                        background: "var(--bg-surface)",
-                        border: "1px solid var(--border)",
+                        borderRadius:
+                            "var(--radius-md)",
+                        background:
+                            "var(--bg-surface)",
+                        border:
+                            "1px solid var(--border)",
                     }}
                 >
                     {views.map((item) => {
@@ -102,7 +117,9 @@ export default function CalendarHeader({
                             <button
                                 key={item.id}
                                 onClick={() =>
-                                    onViewChange(item.id)
+                                    onViewChange(
+                                        item.id
+                                    )
                                 }
                                 style={{
                                     border: "none",
@@ -110,13 +127,16 @@ export default function CalendarHeader({
                                         "var(--radius-sm)",
                                     padding:
                                         "var(--space-2) var(--space-4)",
-                                    background: selected
-                                        ? "var(--primary)"
-                                        : "transparent",
-                                    color: selected
-                                        ? "var(--text-white)"
-                                        : "var(--text-secondary)",
-                                    cursor: "pointer",
+                                    background:
+                                        selected
+                                            ? "var(--primary)"
+                                            : "transparent",
+                                    color:
+                                        selected
+                                            ? "var(--text-white)"
+                                            : "var(--text-secondary)",
+                                    cursor:
+                                        "pointer",
                                     fontWeight: 600,
                                     fontSize: "14px",
                                     transition:
@@ -130,12 +150,13 @@ export default function CalendarHeader({
                 </div>
             </div>
 
-            {/* Navigation */}
             <div
                 style={{
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
+                    alignItems:
+                        "center",
+                    justifyContent:
+                        "space-between",
                     gap: "var(--gap-md)",
                     flexWrap: "wrap",
                 }}
@@ -143,24 +164,41 @@ export default function CalendarHeader({
                 <div
                     style={{
                         display: "flex",
-                        alignItems: "center",
+                        alignItems:
+                            "center",
                         gap: "var(--space-2)",
                     }}
                 >
                     <button
                         onClick={onPrevious}
-                        aria-label="Previous month"
-                        style={navigationButton}
+                        aria-label={
+                            isWeekView
+                                ? "Previous week"
+                                : "Previous month"
+                        }
+                        style={
+                            navigationButton
+                        }
                     >
-                        <ChevronLeft size={19} />
+                        <ChevronLeft
+                            size={19}
+                        />
                     </button>
 
                     <button
                         onClick={onNext}
-                        aria-label="Next month"
-                        style={navigationButton}
+                        aria-label={
+                            isWeekView
+                                ? "Next week"
+                                : "Next month"
+                        }
+                        style={
+                            navigationButton
+                        }
                     >
-                        <ChevronRight size={19} />
+                        <ChevronRight
+                            size={19}
+                        />
                     </button>
 
                     <button
@@ -178,12 +216,19 @@ export default function CalendarHeader({
                 <h2
                     style={{
                         margin: 0,
-                        color: "var(--text-primary)",
+                        color:
+                            "var(--text-primary)",
                         fontSize: "22px",
                         fontWeight: 650,
                     }}
                 >
-                    {formatMonthYear(currentDate)}
+                    {isWeekView
+                        ? formatWeekRange(
+                              currentDate
+                          )
+                        : formatMonthYear(
+                              currentDate
+                          )}
                 </h2>
 
                 <div
@@ -202,22 +247,31 @@ const navigationButton = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    border: "1px solid var(--border)",
-    borderRadius: "var(--radius-sm)",
-    background: "var(--bg-surface)",
-    color: "var(--text-secondary)",
+    border:
+        "1px solid var(--border)",
+    borderRadius:
+        "var(--radius-sm)",
+    background:
+        "var(--bg-surface)",
+    color:
+        "var(--text-secondary)",
     cursor: "pointer",
-    transition: "var(--transition-fast)",
+    transition:
+        "var(--transition-fast)",
 };
 
 const todayButton = {
     height: "38px",
     padding:
         "0 var(--button-padding-x)",
-    border: "1px solid var(--border)",
-    borderRadius: "var(--radius-sm)",
-    background: "var(--bg-surface)",
-    color: "var(--primary-dark)",
+    border:
+        "1px solid var(--border)",
+    borderRadius:
+        "var(--radius-sm)",
+    background:
+        "var(--bg-surface)",
+    color:
+        "var(--primary-dark)",
     cursor: "pointer",
     fontWeight: 600,
     fontSize: "14px",
